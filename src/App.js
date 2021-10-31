@@ -4,6 +4,8 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import AuthProvider from './Context/AuthProvider';
 import AddNewOrder from './Page/AddNewOrder';
+import Blog from './Page/Blog';
+import Home from './Page/Home';
 import Login from './Page/Login';
 import ManageOrder from './Page/ManageOrder';
 import MyOrder from './Page/MyOrder';
@@ -18,6 +20,21 @@ function App() {
         <AuthProvider>
           <Header />
           <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/home">
+              <Home />
+            </Route>
+            <Route exact path="/blog">
+              <Blog />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/register">
+              <Register />
+            </Route>
             <PrivateRoute exact path="/profile">
               <Profile />
             </PrivateRoute>
@@ -30,12 +47,6 @@ function App() {
             <PrivateRoute exact path="/addservice">
               <AddNewOrder />
             </PrivateRoute>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/register">
-              <Register />
-            </Route>
           </Switch>
           <Footer />
         </AuthProvider>

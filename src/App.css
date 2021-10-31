@@ -28,6 +28,9 @@ body{
 /* Footer */
 .footer{
   margin-top: auto;
-  background-color: #1F2937;
-  color: white;
+  background-color: #fff;
+  box-shadow: 0px -3px 15px rgba(206, 205, 205, 0.555);
+}
+.footer *{
+  color: rgb(107, 114, 128);
 }

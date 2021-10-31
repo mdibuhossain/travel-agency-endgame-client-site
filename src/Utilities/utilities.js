@@ -1,7 +1,7 @@
 // Navigation list
 const navList = [
     { name: 'Home', to: '/', current: false },
-    { name: 'Service', to: '/#service', current: false }
+    { name: 'Blog', to: '/blog', current: false }
 ]
 
 const privateNavList = [
