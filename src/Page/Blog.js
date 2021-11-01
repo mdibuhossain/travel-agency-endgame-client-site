@@ -4,7 +4,6 @@ import BlogItem from '../components/BlogItem';
 
 const Blog = () => {
     const { blog, setBlog } = useState([]);
-    const { isLoading, setLoading } = useState(true);
     useEffect(() => {
         axios({
             method: 'get',
@@ -12,17 +11,12 @@ const Blog = () => {
             responseType: 'stream'
         })
             .then((response) => {
-                if (response) {
-                    setBlog(response?.data);
-                    setLoading(false);
-                }
-                // console.log(response.data);
-            })
-            .catch(()=>{
-                setBlog([]);
-                setLoading(true);
+                setBlog(response.data);
+                // console.log(response.data)
             })
     }, [])
+
+
     return (
         <div>
             {/* {
