@@ -3,7 +3,7 @@ import React from 'react';
 const ServiceItem = (props) => {
     const { title, price, rate, description, img } = props.service;
     return (
-        <div className="rounded-lg border overflow-hidden">
+        <div className="rounded-lg border overflow-hidden bg-white">
             <img className="w-full" src={img} alt="servicePic" />
             <div className="p-5">
                 <div className="flex justify-between my-2">

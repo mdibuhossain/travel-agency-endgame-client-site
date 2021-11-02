@@ -1,28 +1,18 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BlogItem from '../components/BlogItem';
+import { useDatabase } from '../Hook/useDatabase';
 
 const Blog = () => {
-    const { blog, setBlog } = useState([]);
-    useEffect(() => {
-        axios({
-            method: 'get',
-            url: 'http://localhost:5000/blog',
-            responseType: 'stream'
-        })
-            .then((response) => {
-                setBlog(response.data);
-                // console.log(response.data)
-            })
-    }, [])
-
-
+    const { blog } = useDatabase();
     return (
-        <div>
-            {/* {
-                blog.map(item => <BlogItem key={item._id} blog={item} />)
-            } */}
-        </div>
+        <>
+            <h1 className="text-5xl text-center mt-8 font-semibold">Blogs</h1>
+            <div className="grid grid-cols-3 gap-5 w-9/12 mx-auto my-12">
+                {
+                    blog.map(item => <BlogItem key={item._id} blog={item} />)
+                }
+            </div>
+        </>
     );
 };
 
