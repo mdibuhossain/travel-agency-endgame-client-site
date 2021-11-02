@@ -1,5 +1,5 @@
 # WorldTrip
-## [Live Site](https://life-dental-care.web.app/)
+## [Live Site](https://world-trip-6e379.web.app/)
 
 
 ### `Technology stack`
