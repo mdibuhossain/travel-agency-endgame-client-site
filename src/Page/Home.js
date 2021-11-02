@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
 import BannerBG from '../components/BannerStyled';
-import Newsletter from '../components/Newsletter';
 import Service from '../components/Service';
 import { useDatabase } from '../Hook/useDatabase';
 
@@ -12,11 +11,10 @@ const Home = () => {
         <div>
             <BannerBG img="assets/img/banner.jpg">
                 <Banner
-                    greeting="historical landmarks"
+                    greeting="WORLD TRIP"
                 />
             </BannerBG>
             <Service />
-            <Newsletter />
         </div>
     );
 };

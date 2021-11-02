@@ -9,7 +9,7 @@ const MyOrder = () => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
         if (confDelete) {
-            const url = `http://localhost:5000/order/${id}`;
+            const url = `https://damp-chamber-98224.herokuapp.com/order/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -26,8 +26,7 @@ const MyOrder = () => {
     return (
         <div>
             <div className="text-center mt-8">
-                <h1 className="text-4xl font-bold">Manage order</h1>
-                <h4 className="text-2xl mt-2">Total order: {order.length}</h4>
+                <h1 className="text-4xl font-bold">My order</h1>
             </div>
 
             {

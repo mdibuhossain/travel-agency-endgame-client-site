@@ -9,7 +9,7 @@ const AddNewOrder = () => {
     const { user } = useAuth();
     const onSubmit = data => {
         console.log(data);
-        axios.post('http://localhost:5000/services', data)
+        axios.post('https://damp-chamber-98224.herokuapp.com/services', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');
@@ -31,7 +31,7 @@ const AddNewOrder = () => {
                 <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Rating" defaultValue="" {...register("rate")} />
                 <textarea className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Description" defaultValue="" {...register("description")} />
                 <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Image URL" defaultValue="" {...register("img")} />
-                <input className="py-3 rounded-lg" type="submit" />
+                <input className="py-3 rounded-lg bg-blue-300" type="submit" />
             </form>
         </div>
     );

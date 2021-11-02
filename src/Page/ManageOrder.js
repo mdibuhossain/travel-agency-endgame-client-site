@@ -8,7 +8,7 @@ const ManageOrder = () => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
         if (confDelete) {
-            const url = `http://localhost:5000/order/${id}`;
+            const url = `https://damp-chamber-98224.herokuapp.com/order/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

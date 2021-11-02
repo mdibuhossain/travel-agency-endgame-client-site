@@ -13,7 +13,7 @@ const ServiceItem = (props) => {
         console.log(data);
         data.name = user?.displayName;
         data.email = user?.email;
-        axios.post('http://localhost:5000/order', data)
+        axios.post('https://damp-chamber-98224.herokuapp.com/order', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added to cart successfully');

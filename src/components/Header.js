@@ -50,20 +50,6 @@ const Header = () => {
                                 </div>
                                 <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                                     <div className="flex-shrink-0 flex items-center">
-                                        <Link to="/">
-                                            <img
-                                                className="block lg:hidden h-8 w-auto"
-                                                src='/assets/img/singleLogo.svg'
-                                                alt="Workflow"
-                                            />
-                                        </Link>
-                                        <Link to="/">
-                                            <img
-                                                className="hidden lg:block h-8 w-auto"
-                                                src="/assets/img/logo.svg"
-                                                alt="Workflow"
-                                            />
-                                        </Link>
                                     </div>
                                     <div className="hidden sm:block sm:ml-6">
                                         <div className="flex space-x-4">

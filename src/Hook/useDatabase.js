@@ -9,7 +9,7 @@ export const useDatabase = () => {
     useEffect(() => {
         const loadService = async () => {
             setDataLoading(true);
-            fetch('http://localhost:5000/services')
+            fetch('https://damp-chamber-98224.herokuapp.com/services')
                 .then(res => res.json())
                 .then(data => {
                     setService(data)
@@ -18,14 +18,14 @@ export const useDatabase = () => {
         }
         const loadBlog = async () => {
             setDataLoading(true);
-            const res = await fetch('http://localhost:5000/blog');
+            const res = await fetch('https://damp-chamber-98224.herokuapp.com/blog');
             const data = await res.json();
             setBlog(data);
             setDataLoading(false);
         }
         const loadOrder = async () => {
             setDataLoading(true);
-            const res = await fetch('http://localhost:5000/order');
+            const res = await fetch('https://damp-chamber-98224.herokuapp.com/order');
             const data = await res.json();
             setOrder(data);
             setDataLoading(false);
