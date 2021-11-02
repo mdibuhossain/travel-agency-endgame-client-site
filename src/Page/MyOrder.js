@@ -17,8 +17,8 @@ const MyOrder = () => {
                 .then(data => {
                     if (data.deleteCount > 0) {
                         alert('Successfully deleted');
-                        const remService = service.filter(item => item._id !== id);
-                        setService(remService);
+                        const remService = order.filter(item => item._id !== id);
+                        setOrder(remService);
                     }
                 })
         }
@@ -27,7 +27,7 @@ const MyOrder = () => {
         <div>
             <div className="text-center mt-8">
                 <h1 className="text-4xl font-bold">Manage order</h1>
-                <h4 className="text-2xl mt-2">Total services: {service.length}</h4>
+                <h4 className="text-2xl mt-2">Total order: {order.length}</h4>
             </div>
 
             {

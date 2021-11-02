@@ -1,14 +1,18 @@
 import axios from 'axios';
 import React from 'react';
+import { useAuth } from '../Hook/useAuth';
 import { useDatabase } from '../Hook/useDatabase';
 
 const ServiceItem = (props) => {
+    const { user } = useAuth();
     const { service } = useDatabase();
     const { title, price, rate, description, img, _id } = props.service;
 
     const handleAddtoCart = async (id) => {
         const data = await service.find(item => item._id === id);
         console.log(data);
+        data.name = user?.displayName;
+        data.email = user?.email;
         axios.post('http://localhost:5000/order', data)
             .then(res => {
                 if (res.data.insertedId) {

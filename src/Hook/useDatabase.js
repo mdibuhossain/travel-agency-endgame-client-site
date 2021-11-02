@@ -9,10 +9,12 @@ export const useDatabase = () => {
     useEffect(() => {
         const loadService = async () => {
             setDataLoading(true);
-            const res = await fetch('http://localhost:5000/services');
-            const data = await res.json();
-            setService(data);
-            setDataLoading(false);
+            fetch('http://localhost:5000/services')
+                .then(res => res.json())
+                .then(data => {
+                    setService(data)
+                    setDataLoading(false);
+                })
         }
         const loadBlog = async () => {
             setDataLoading(true);
@@ -32,7 +34,6 @@ export const useDatabase = () => {
         loadBlog();
         loadOrder();
     }, [])
-
     return {
         service,
         blog,

@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useDatabase } from '../Hook/useDatabase';
 
 const ManageOrder = () => {
     const { service, setService, isDataLoading, order, setOrder } = useDatabase();
 
-    const handleDeleteService = (id) => {
+    const handleDeleteOrder = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
         if (confDelete) {
@@ -16,9 +15,9 @@ const ManageOrder = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deleteCount > 0) {
-                        alert('Successfully deleted');
-                        const remService = service.filter(item => item._id !== id);
-                        setService(remService);
+                        alert('Successfully deleted :)');
+                        const remOrder = order.filter(item => item._id !== id);
+                        setOrder(remOrder);
                     }
                 })
         }
@@ -27,7 +26,7 @@ const ManageOrder = () => {
         <div>
             <div className="text-center mt-8">
                 <h1 className="text-4xl font-bold">Manage order</h1>
-                <h4 className="text-2xl mt-2">Total services: {service.length}</h4>
+                <h4 className="text-2xl mt-2">Total order: {order.length}</h4>
             </div>
 
             {
@@ -41,7 +40,7 @@ const ManageOrder = () => {
                                     <div key={item._id} className="my-3">
                                         <div key={item._id} className="flex justify-center items-center bg-white py-3 px-4 rounded">
                                             <h1 className="font-semibold">{item.title} :: ${item.price}</h1>
-                                            <button onClick={() => handleDeleteService(item._id)} className="bg-red-400 py-1 px-3 mx-3 rounded">X</button>
+                                            <button onClick={() => handleDeleteOrder(item._id)} className="bg-red-400 py-1 px-3 mx-3 rounded">X</button>
                                         </div>
                                         {
                                             item.name &&

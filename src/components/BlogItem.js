@@ -1,4 +1,6 @@
 import React from 'react';
+import { MdDateRange } from 'react-icons/md';
+import { MdModeComment } from 'react-icons/md';
 
 const BlogItem = (props) => {
     const { blog } = props;
@@ -10,11 +12,11 @@ const BlogItem = (props) => {
                     <h1 className="text-2xl">{blog.title}</h1>
                 </div>
                 <div className="flex">
-                    <div className="mr-5">
-                        {blog.date}
+                    <div className="mr-5 flex items-center">
+                        <MdDateRange className="mr-1" /> {blog.date}
                     </div>
-                    <div>
-                        {blog.comments} <span> comments</span>
+                    <div className="flex items-start">
+                        <MdModeComment className="mr-1" />  <span>{blog.comments} comments</span>
                     </div>
                 </div>
             </div>
