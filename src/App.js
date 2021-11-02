@@ -11,6 +11,7 @@ import ManageOrder from './Page/ManageOrder';
 import MyOrder from './Page/MyOrder';
 import Profile from './Page/Profile';
 import Register from './Page/Register';
+import UpdateService from './Page/UpdateService';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
             </PrivateRoute>
             <PrivateRoute exact path="/addservice">
               <AddNewOrder />
+            </PrivateRoute>
+            <PrivateRoute exact path="/service/updateservice/:id">
+              <UpdateService />
             </PrivateRoute>
           </Switch>
           <Footer />

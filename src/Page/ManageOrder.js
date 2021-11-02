@@ -1,9 +1,60 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDatabase } from '../Hook/useDatabase';
 
 const ManageOrder = () => {
+    const { service, setService, isDataLoading } = useDatabase();
+
+    const handleDeleteService = (id) => {
+        const confDelete = window.confirm('Do you really want to delete?');
+        console.log(confDelete);
+        if (confDelete) {
+            const url = `http://localhost:5000/services/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deleteCount > 0) {
+                        alert('Successfully deleted');
+                        const remService = service.filter(item => item._id !== id);
+                        setService(remService);
+                    }
+                })
+        }
+    }
     return (
         <div>
-            <h1>Manage order</h1>
+            <div className="text-center mt-8">
+                <h1 className="text-4xl font-bold">Manage order</h1>
+                <h4 className="text-2xl mt-2">Total services: {service.length}</h4>
+            </div>
+
+            {
+                isDataLoading ? <div className=" flex justify-center items-center my-10">
+                    <div className="animate-spin rounded-full h-52 w-52 border-t-2 border-b-2 border-purple-300"></div>
+                </div> :
+                    <div className="flex justify-center items-center flex-col my-8">
+                        {
+                            service.map(item => {
+                                return (
+                                    <div key={item._id} className="my-3">
+                                        <div key={item._id} className="flex justify-center items-center bg-white py-3 px-4 rounded">
+                                            <h1 className="font-semibold">{item.title} :: ${item.price}</h1>
+                                            <Link to={`/service/updateservice/${item._id}`} className="bg-blue-300 py-1 px-2 rounded mx-2"><button>Update</button></Link>
+                                            <button onClick={() => handleDeleteService(item._id)} className="bg-red-400 py-1 px-3 rounded">X</button>
+                                        </div>
+                                        {
+                                            item.name &&
+                                            <span>Added by: {item.name}</span>
+                                        }
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+            }
+
         </div>
     );
 };

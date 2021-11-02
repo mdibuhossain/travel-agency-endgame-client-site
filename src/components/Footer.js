@@ -20,14 +20,14 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="my-5 flex flex-col text-left">
-                    <p className="mb-2">Pages</p>
+                    <p className="mb-2 font-bold">Pages</p>
                     {
                         navList.map(item => {
                             return (
                                 <HashLink
                                     key={item.name}
                                     to={item.to}
-                                    className="text-gray-300 hover:text-white py-1 text-sm font-medium"
+                                    className="text-gray-300 hover:text-blue-500 py-1 text-sm font-medium"
                                 >
                                     {item.name}
                                 </HashLink>
@@ -36,7 +36,7 @@ const Footer = () => {
                     }
                 </div>
                 <div className="my-5 text-left">
-                    <p className="mb-2">Address</p>
+                    <p className="mb-2 font-bold">Address</p>
                     <div className="font-semibold text-gray-300">
                         <p>WorldTrip</p>
                         <p>8100 Gopalganj</p>

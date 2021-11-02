@@ -2,18 +2,23 @@ import { useState, useEffect } from 'react';
 
 export const useDatabase = () => {
     const [service, setService] = useState([]);
-    const [ blog, setBlog ] = useState([]);
-
+    const [blog, setBlog] = useState([]);
+    const [isDataLoading, setDataLoading] = useState(true);
+    // https://damp-chamber-98224.herokuapp.com/
     useEffect(() => {
         const loadService = async () => {
-            const res = await fetch('https://damp-chamber-98224.herokuapp.com/services');
+            setDataLoading(true);
+            const res = await fetch('http://localhost:5000/services');
             const data = await res.json();
             setService(data);
+            setDataLoading(false);
         }
         const loadBlog = async () => {
-            const res = await fetch('https://damp-chamber-98224.herokuapp.com/blog');
+            setDataLoading(true);
+            const res = await fetch('http://localhost:5000/blog');
             const data = await res.json();
             setBlog(data);
+            setDataLoading(false);
         }
         loadService();
         loadBlog();
@@ -21,6 +26,9 @@ export const useDatabase = () => {
 
     return {
         service,
-        blog
+        blog,
+        setService,
+        setBlog,
+        isDataLoading
     }
 }
