@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { useDatabase } from '../Hook/useDatabase';
 
 const ManageOrder = () => {
-    const { service, setService, isDataLoading } = useDatabase();
+    const { service, setService, isDataLoading, order, setOrder } = useDatabase();
 
     const handleDeleteService = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
         if (confDelete) {
-            const url = `http://localhost:5000/services/${id}`;
+            const url = `http://localhost:5000/order/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -36,13 +36,12 @@ const ManageOrder = () => {
                 </div> :
                     <div className="flex justify-center items-center flex-col my-8">
                         {
-                            service.map(item => {
+                            order.map(item => {
                                 return (
                                     <div key={item._id} className="my-3">
                                         <div key={item._id} className="flex justify-center items-center bg-white py-3 px-4 rounded">
                                             <h1 className="font-semibold">{item.title} :: ${item.price}</h1>
-                                            <Link to={`/service/updateservice/${item._id}`} className="bg-blue-300 py-1 px-2 rounded mx-2"><button>Update</button></Link>
-                                            <button onClick={() => handleDeleteService(item._id)} className="bg-red-400 py-1 px-3 rounded">X</button>
+                                            <button onClick={() => handleDeleteService(item._id)} className="bg-red-400 py-1 px-3 mx-3 rounded">X</button>
                                         </div>
                                         {
                                             item.name &&

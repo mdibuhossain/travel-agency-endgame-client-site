@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 export const useDatabase = () => {
     const [service, setService] = useState([]);
     const [blog, setBlog] = useState([]);
+    const [order, setOrder] = useState([]);
     const [isDataLoading, setDataLoading] = useState(true);
     // https://damp-chamber-98224.herokuapp.com/
     useEffect(() => {
@@ -20,15 +21,25 @@ export const useDatabase = () => {
             setBlog(data);
             setDataLoading(false);
         }
+        const loadOrder = async () => {
+            setDataLoading(true);
+            const res = await fetch('http://localhost:5000/order');
+            const data = await res.json();
+            setOrder(data);
+            setDataLoading(false);
+        }
         loadService();
         loadBlog();
+        loadOrder();
     }, [])
 
     return {
         service,
         blog,
+        order,
         setService,
         setBlog,
+        setOrder,
         isDataLoading
     }
 }
