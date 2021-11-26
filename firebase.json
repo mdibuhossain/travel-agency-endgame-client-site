@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "world-trip",
     "public": "build",
     "ignore": [
       "firebase.json",
