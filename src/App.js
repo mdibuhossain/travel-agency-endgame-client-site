@@ -7,7 +7,7 @@ import AddNewOrder from './Page/AddNewOrder';
 import Blog from './Page/Blog';
 import Home from './Page/Home';
 import Login from './Page/Login';
-import ManageOrder from './Page/ManageOrder';
+// import ManageOrder from './Page/ManageOrder';
 import MyOrder from './Page/MyOrder';
 import Profile from './Page/Profile';
 import Register from './Page/Register';

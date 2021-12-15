@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 export const useDatabase = () => {
-    const [service, setService] = useState([]);
     const [blog, setBlog] = useState([]);
     const [isDataLoading, setDataLoading] = useState(true);
     // https://heroku-world-trip.herokuapp.com/

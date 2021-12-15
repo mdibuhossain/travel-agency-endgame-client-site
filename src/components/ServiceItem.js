@@ -1,24 +1,29 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../Hook/useAuth';
-import { useDatabase } from '../Hook/useDatabase';
 
 const ServiceItem = ({ service, services }) => {
     const { user } = useAuth();
+    const history = useHistory();
     const { title, price, rate, description, img, _id } = service;
     const handleAddtoCart = async (id) => {
-        const data = await services?.find(item => item._id === id);
-        data.name = await user?.displayName;
-        data.email = await user?.email;
-        axios.post('https://heroku-world-trip.herokuapp.com/orders', data)
-            .then(res => {
-                if (res.data.insertedId) {
-                    alert('added to cart successfully');
-                }
-                else {
-                    alert(`${res.data.message}`);
-                }
-            })
+        if (user?.uid) {
+            const data = await services?.find(item => item._id === id);
+            data.name = await user?.displayName;
+            data.email = await user?.email;
+            axios.post('https://heroku-world-trip.herokuapp.com/orders', data)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        alert('added to cart successfully');
+                    }
+                    else {
+                        alert(`${res.data.message}`);
+                    }
+                })
+        }
+        else
+            history.push('/login');
     }
 
     return (

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
-import { useDatabase } from '../Hook/useDatabase';
 
 const MyOrder = () => {
     const [order, setOrder] = useState([]);
@@ -36,7 +35,6 @@ const MyOrder = () => {
             <PageTitle title="Dashboard" />
             <div className="text-center mt-8">
                 <h1 className="text-4xl font-bold">My order</h1>
-                <h1 className="text-xl mt-2">order: {order.length}</h1>
             </div>
 
             {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PageTitle from '../components/PageTitle';
-import { useDatabase } from '../Hook/useDatabase';
 
 const ManageOrder = () => {
     const [order, setOrder] = useState([]);

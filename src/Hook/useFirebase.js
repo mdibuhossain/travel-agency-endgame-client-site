@@ -103,7 +103,7 @@ export const useFirebase = () => {
             setIsLoading(false);
         });
         return () => unsubscribed;
-    }, [])
+    }, [auth, history, location])
 
 
     return {

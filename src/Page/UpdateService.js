@@ -1,9 +1,7 @@
-import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import PageTitle from '../components/PageTitle';
-import { useAuth } from '../Hook/useAuth';
 import { useDatabase } from '../Hook/useDatabase';
 
 const UpdateService = () => {

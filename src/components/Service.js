@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useDatabase } from '../Hook/useDatabase';
 import ServiceItem from './ServiceItem';
 
 const Service = () => {
