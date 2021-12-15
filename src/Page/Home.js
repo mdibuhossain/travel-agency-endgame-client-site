@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <div>
             <PageTitle title="Home" />
-            <BannerBG img="assets/img/banner.jpg">
+            <BannerBG img="assets/img/banner1.jpg">
                 <Banner
                     greeting="WORLD TRIP"
                 />
