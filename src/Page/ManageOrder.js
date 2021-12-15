@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PageTitle from '../components/PageTitle';
 import { useDatabase } from '../Hook/useDatabase';
 
 const ManageOrder = () => {
-    const { service, setService, isDataLoading, order, setOrder } = useDatabase();
+    const [order, setOrder] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/orders')
+            .then(res => res.json())
+            .then(data => {
+                setOrder(data);
+            })
+    }, [])
 
     const handleDeleteOrder = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
-        console.log(confDelete);
         if (confDelete) {
             const url = `http://localhost:5000/orders/${id}`;
             fetch(url, {
@@ -15,6 +21,7 @@ const ManageOrder = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(data);
                     if (data.deleteCount > 0) {
                         alert('Successfully deleted :)');
                         const remOrder = order.filter(item => item._id !== id);
@@ -32,7 +39,7 @@ const ManageOrder = () => {
             </div>
 
             {
-                isDataLoading ? <div className=" flex justify-center items-center my-10">
+                !order ? <div className=" flex justify-center items-center my-10">
                     <div className="animate-spin rounded-full h-52 w-52 border-t-2 border-b-2 border-purple-300"></div>
                 </div> :
                     <div className="flex justify-center items-center flex-col my-8">

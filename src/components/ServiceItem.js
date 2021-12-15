@@ -3,13 +3,12 @@ import React from 'react';
 import { useAuth } from '../Hook/useAuth';
 import { useDatabase } from '../Hook/useDatabase';
 
-const ServiceItem = (props) => {
+const ServiceItem = ({ service }) => {
     const { user } = useAuth();
-    const { service } = useDatabase();
-    const { title, price, rate, description, img, _id } = props.service;
+    const { title, price, rate, description, img, _id } = service;
 
     const handleAddtoCart = async (id) => {
-        const data = await service.find(item => item._id === id);
+        const data = await service;
         data.name = await user?.displayName;
         data.email = await user?.email;
         axios.post('http://localhost:5000/orders', data)

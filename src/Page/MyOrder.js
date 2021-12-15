@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 import { useDatabase } from '../Hook/useDatabase';
 
 const MyOrder = () => {
-    const { service, setService, isDataLoading, order, setOrder } = useDatabase();
+    const [order, setOrder] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/orders')
+            .then(res => res.json())
+            .then(data => {
+                setOrder(data);
+            })
+    }, [])
     const { user } = useAuth();
     const handleDeleteService = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
@@ -32,7 +39,7 @@ const MyOrder = () => {
             </div>
 
             {
-                isDataLoading ? <div className=" flex justify-center items-center my-10">
+                !order ? <div className=" flex justify-center items-center my-10">
                     <div className="animate-spin rounded-full h-52 w-52 border-t-2 border-b-2 border-purple-300"></div>
                 </div> :
                     <div className="flex justify-center items-center flex-col my-8">

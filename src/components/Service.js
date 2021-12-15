@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDatabase } from '../Hook/useDatabase';
 import ServiceItem from './ServiceItem';
 
 const Service = () => {
-    const { service, isDataLoading } = useDatabase();
+    const [service, setService] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/services')
+            .then(res => res.json())
+            .then(data => {
+                setService(data)
+            })
+    }, [])
     return (
         <>
             <h1 className="text-5xl text-center mt-8 font-semibold">Services</h1>
-            {isDataLoading ? <div className=" flex justify-center items-center my-10">
+            {!service ? <div className=" flex justify-center items-center my-10">
                 <div className="animate-spin rounded-full h-52 w-52 border-t-2 border-b-2 border-purple-300"></div>
             </div> :
 
