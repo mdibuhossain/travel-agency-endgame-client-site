@@ -10,11 +10,11 @@ const ServiceItem = (props) => {
 
     const handleAddtoCart = async (id) => {
         const data = await service.find(item => item._id === id);
-        console.log(data);
-        data.name = user?.displayName;
-        data.email = user?.email;
-        axios.post('https://damp-chamber-98224.herokuapp.com/order', data)
+        data.name = await user?.displayName;
+        data.email = await user?.email;
+        axios.post('http://localhost:5000/orders', data)
             .then(res => {
+                console.log(res);
                 if (res.data.insertedId) {
                     alert('added to cart successfully');
                 }

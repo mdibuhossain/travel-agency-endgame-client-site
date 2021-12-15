@@ -1,4 +1,5 @@
 import React from 'react';
+import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 import { useDatabase } from '../Hook/useDatabase';
 
@@ -9,7 +10,7 @@ const MyOrder = () => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
         if (confDelete) {
-            const url = `https://damp-chamber-98224.herokuapp.com/order/${id}`;
+            const url = `http://localhost:5000/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -25,6 +26,7 @@ const MyOrder = () => {
     }
     return (
         <div>
+            <PageTitle title="Dashboard" />
             <div className="text-center mt-8">
                 <h1 className="text-4xl font-bold">My order</h1>
             </div>

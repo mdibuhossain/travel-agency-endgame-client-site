@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
+import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 import { useDatabase } from '../Hook/useDatabase';
 
@@ -12,7 +13,7 @@ const UpdateService = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data);
-        fetch(`https://damp-chamber-98224.herokuapp.com/services/updateservice/${id}`, {
+        fetch(`http://localhost:5000/services/updateservice/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -26,7 +27,7 @@ const UpdateService = () => {
                     reset();
                 }
             })
-        // axios.post(`https://damp-chamber-98224.herokuapp.com/services/updateservice/${id}`, data)
+        // axios.post(`http://localhost:5000/services/updateservice/${id}`, data)
         //     .then(res => {
         //         if (res.data.insertedId) {
         //             alert('Successfully updated');
@@ -36,6 +37,7 @@ const UpdateService = () => {
     }
     return (
         <div className="flex h-screen flex-col items-center justify-center">
+            <PageTitle title="Dashboard" />
             <h1 className="text-5xl font-semibold my-5">Update service</h1>
             <form className="grid grid-col-1 w-1/2 mx-auto" onSubmit={handleSubmit(onSubmit)}>
                 <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Name" defaultValue={selectedService?.name} {...register("name", { required: true, maxLength: 100 })} />

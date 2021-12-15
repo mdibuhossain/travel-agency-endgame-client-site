@@ -1,10 +1,12 @@
 import React from 'react';
+import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 
 const Profile = () => {
     const { user, logOut } = useAuth();
     return (
         <div className="relative fullPage">
+            <PageTitle title="Profile" />
             <div className="text-center flex justify-center items-center flex-col absolute left-0 right-0 top-0 bottom-0">
                 <img className="w-40 rounded-full mx-auto" src={user.photoURL} alt="profile" />
                 <div>
