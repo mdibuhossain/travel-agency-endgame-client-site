@@ -39,7 +39,7 @@ const MyOrder = () => {
             </div>
 
             {
-                !order ? <div className=" flex justify-center items-center my-10">
+                !order.length ? <div className=" flex justify-center items-center my-10">
                     <div className="animate-spin rounded-full h-52 w-52 border-t-2 border-b-2 border-purple-300"></div>
                 </div> :
                     <div className="flex justify-center items-center flex-col my-8">

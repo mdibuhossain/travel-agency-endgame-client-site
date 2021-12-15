@@ -1,21 +1,22 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../Hook/useAuth';
 import { useDatabase } from '../Hook/useDatabase';
 
-const ServiceItem = ({ service }) => {
+const ServiceItem = ({ service, services }) => {
     const { user } = useAuth();
     const { title, price, rate, description, img, _id } = service;
-
     const handleAddtoCart = async (id) => {
-        const data = await service;
+        const data = await services?.find(item => item._id === id);
         data.name = await user?.displayName;
         data.email = await user?.email;
         axios.post('http://localhost:5000/orders', data)
             .then(res => {
-                console.log(res);
                 if (res.data.insertedId) {
                     alert('added to cart successfully');
+                }
+                else {
+                    alert(`${res.data.message}`);
                 }
             })
     }
