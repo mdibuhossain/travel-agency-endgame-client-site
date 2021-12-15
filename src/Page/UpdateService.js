@@ -13,7 +13,7 @@ const UpdateService = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data);
-        fetch(`http://localhost:5000/services/updateservice/${id}`, {
+        fetch(`https://heroku-world-trip.herokuapp.com/services/updateservice/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -27,7 +27,7 @@ const UpdateService = () => {
                     reset();
                 }
             })
-        // axios.post(`http://localhost:5000/services/updateservice/${id}`, data)
+        // axios.post(`https://heroku-world-trip.herokuapp.com/services/updateservice/${id}`, data)
         //     .then(res => {
         //         if (res.data.insertedId) {
         //             alert('Successfully updated');

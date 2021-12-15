@@ -9,7 +9,7 @@ const AddNewOrder = () => {
     const { register, handleSubmit, reset } = useForm();
     const { user } = useAuth();
     const onSubmit = data => {
-        axios.post('http://localhost:5000/services', data)
+        axios.post('https://heroku-world-trip.herokuapp.com/services', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');

@@ -4,10 +4,10 @@ export const useDatabase = () => {
     const [service, setService] = useState([]);
     const [blog, setBlog] = useState([]);
     const [isDataLoading, setDataLoading] = useState(true);
-    // http://localhost:5000/
+    // https://heroku-world-trip.herokuapp.com/
     useEffect(() => {
         setDataLoading(true);
-        fetch('http://localhost:5000/blog')
+        fetch('https://heroku-world-trip.herokuapp.com/blog')
             .then(res => res.json())
             .then(data => {
                 setBlog(data);

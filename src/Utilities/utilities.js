@@ -6,7 +6,7 @@ const navList = [
 
 const privateNavList = [
     { name: 'My Orders', to: '/myorders', current: false },
-    { name: 'Manage All Orders', to: '/manageorder', current: false },
+    // { name: 'Manage All Orders', to: '/manageorder', current: false },
     { name: 'Add A New Service', to: '/addservice', current: false }
 ]
 

@@ -10,7 +10,7 @@ const ServiceItem = ({ service, services }) => {
         const data = await services?.find(item => item._id === id);
         data.name = await user?.displayName;
         data.email = await user?.email;
-        axios.post('http://localhost:5000/orders', data)
+        axios.post('https://heroku-world-trip.herokuapp.com/orders', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added to cart successfully');
@@ -22,7 +22,7 @@ const ServiceItem = ({ service, services }) => {
     }
 
     return (
-        <div className="rounded-lg border overflow-hidden bg-white flex flex-col justify-between">
+        <div className="rounded-xl overflow-hidden bg-white flex flex-col justify-between hover:shadow-xl transition ease-in-out duration-300">
             <div>
                 <img className="w-full" src={img} alt="servicePic" />
                 <div className="p-5">
@@ -36,7 +36,7 @@ const ServiceItem = ({ service, services }) => {
                     </div>
                 </div>
             </div>
-            <button onClick={() => handleAddtoCart(_id)} className="border-t py-2 hover:bg-blue-300 w-full">Add to cart</button>
+            <button onClick={() => handleAddtoCart(_id)} className="border-t py-2 hover:bg-blue-300 transition ease-in-out duration-200 w-full">Add to cart</button>
         </div>
     );
 };
