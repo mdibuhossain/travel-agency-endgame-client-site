@@ -9,7 +9,7 @@ const AddNewOrder = () => {
     const { user } = useAuth();
     const onSubmit = data => {
         console.log(data);
-        axios.post('https://damp-chamber-98224.herokuapp.com/services', data)
+        axios.post('https://heroku-world-trip.herokuapp.com/services', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');

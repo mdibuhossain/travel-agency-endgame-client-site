@@ -5,11 +5,11 @@ export const useDatabase = () => {
     const [blog, setBlog] = useState([]);
     const [order, setOrder] = useState([]);
     const [isDataLoading, setDataLoading] = useState(true);
-    // https://damp-chamber-98224.herokuapp.com/
+    // https://heroku-world-trip.herokuapp.com/
     useEffect(() => {
         const loadService = async () => {
             setDataLoading(true);
-            fetch('https://damp-chamber-98224.herokuapp.com/services')
+            fetch('https://heroku-world-trip.herokuapp.com/services')
                 .then(res => res.json())
                 .then(data => {
                     setService(data)
@@ -18,14 +18,14 @@ export const useDatabase = () => {
         }
         const loadBlog = async () => {
             setDataLoading(true);
-            const res = await fetch('https://damp-chamber-98224.herokuapp.com/blog');
+            const res = await fetch('https://heroku-world-trip.herokuapp.com/blog');
             const data = await res.json();
             setBlog(data);
             setDataLoading(false);
         }
         const loadOrder = async () => {
             setDataLoading(true);
-            const res = await fetch('https://damp-chamber-98224.herokuapp.com/order');
+            const res = await fetch('https://heroku-world-trip.herokuapp.com/order');
             const data = await res.json();
             setOrder(data);
             setDataLoading(false);

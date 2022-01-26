@@ -12,7 +12,7 @@ const UpdateService = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data);
-        fetch(`https://damp-chamber-98224.herokuapp.com/services/updateservice/${id}`, {
+        fetch(`https://heroku-world-trip.herokuapp.com/services/updateservice/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -26,7 +26,7 @@ const UpdateService = () => {
                     reset();
                 }
             })
-        // axios.post(`https://damp-chamber-98224.herokuapp.com/services/updateservice/${id}`, data)
+        // axios.post(`https://heroku-world-trip.herokuapp.com/services/updateservice/${id}`, data)
         //     .then(res => {
         //         if (res.data.insertedId) {
         //             alert('Successfully updated');
