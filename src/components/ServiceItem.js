@@ -1,28 +1,33 @@
 import axios from 'axios';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../Hook/useAuth';
-import { useDatabase } from '../Hook/useDatabase';
 
-const ServiceItem = (props) => {
+const ServiceItem = ({ service, services }) => {
     const { user } = useAuth();
-    const { service } = useDatabase();
-    const { title, price, rate, description, img, _id } = props.service;
-
+    const history = useHistory();
+    const { title, price, rate, description, img, _id } = service;
     const handleAddtoCart = async (id) => {
-        const data = await service.find(item => item._id === id);
-        console.log(data);
-        data.name = user?.displayName;
-        data.email = user?.email;
-        axios.post('https://heroku-world-trip.herokuapp.com/order', data)
-            .then(res => {
-                if (res.data.insertedId) {
-                    alert('added to cart successfully');
-                }
-            })
+        if (user?.uid) {
+            const data = await services?.find(item => item._id === id);
+            data.name = await user?.displayName;
+            data.email = await user?.email;
+            axios.post('https://heroku-world-trip.herokuapp.com/orders', data)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        alert('added to cart successfully');
+                    }
+                    else {
+                        alert(`${res.data.message}`);
+                    }
+                })
+        }
+        else
+            history.push('/login');
     }
 
     return (
-        <div className="rounded-lg border overflow-hidden bg-white flex flex-col justify-between">
+        <div className="rounded-xl overflow-hidden bg-white flex flex-col justify-between hover:shadow-xl transition ease-in-out duration-300">
             <div>
                 <img className="w-full" src={img} alt="servicePic" />
                 <div className="p-5">
@@ -36,7 +41,7 @@ const ServiceItem = (props) => {
                     </div>
                 </div>
             </div>
-            <button onClick={() => handleAddtoCart(_id)} className="border-t py-2 hover:bg-blue-300 w-full">Add to cart</button>
+            <button onClick={() => handleAddtoCart(_id)} className="border-t py-2 hover:bg-blue-300 transition ease-in-out duration-200 w-full">Add to cart</button>
         </div>
     );
 };

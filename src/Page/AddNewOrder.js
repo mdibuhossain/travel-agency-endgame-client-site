@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 
 const AddNewOrder = () => {
@@ -8,7 +9,6 @@ const AddNewOrder = () => {
     const { register, handleSubmit, reset } = useForm();
     const { user } = useAuth();
     const onSubmit = data => {
-        console.log(data);
         axios.post('https://heroku-world-trip.herokuapp.com/services', data)
             .then(res => {
                 if (res.data.insertedId) {
@@ -22,6 +22,7 @@ const AddNewOrder = () => {
 
     return (
         <div className="flex h-screen flex-col items-center justify-center">
+            <PageTitle title="Dashboard" />
             <h1 className="text-5xl font-semibold my-5">Add new service</h1>
             <form className="grid grid-col-1 w-1/2 mx-auto" onSubmit={handleSubmit(onSubmit)}>
                 <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Name" defaultValue={user.displayName} {...register("name", { required: true, maxLength: 100 })} />

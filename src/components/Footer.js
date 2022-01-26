@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { BsFacebook, BsTwitter, BsLinkedin, BsDribbble } from 'react-icons/bs';
 import { navList } from '../Utilities/utilities'

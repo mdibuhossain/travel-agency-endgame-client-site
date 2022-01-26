@@ -1,11 +1,13 @@
 import React from 'react';
 import BlogItem from '../components/BlogItem';
+import PageTitle from '../components/PageTitle';
 import { useDatabase } from '../Hook/useDatabase';
 
 const Blog = () => {
     const { blog, isDataLoading } = useDatabase();
     return (
         <>
+            <PageTitle title="Blog" />
             <h1 className="text-5xl text-center mt-8 font-semibold">Blogs</h1>
             {
                 isDataLoading ? <div className=" flex justify-center items-center my-10">
