@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Service from './components/Service';
 import AuthProvider from './Context/AuthProvider';
+import AddBlog from './Page/AddBlog';
 import AddNewOrder from './Page/AddNewOrder';
 import Home from './Page/Home';
 import Login from './Page/Login';
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route exact path="/services">
               <Service />
+            </Route>
+            <Route exact path="/addblog">
+              <AddBlog />
             </Route>
             <Route exact path="/login">
               <Login />
