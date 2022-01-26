@@ -2,9 +2,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Service from './components/Service';
 import AuthProvider from './Context/AuthProvider';
 import AddNewOrder from './Page/AddNewOrder';
-import Blog from './Page/Blog';
 import Home from './Page/Home';
 import Login from './Page/Login';
 // import ManageOrder from './Page/ManageOrder';
@@ -27,8 +27,8 @@ function App() {
             <Route exact path="/home">
               <Home />
             </Route>
-            <Route exact path="/blog">
-              <Blog />
+            <Route exact path="/services">
+              <Service />
             </Route>
             <Route exact path="/login">
               <Login />
