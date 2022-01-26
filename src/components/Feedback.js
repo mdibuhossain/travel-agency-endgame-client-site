@@ -56,10 +56,11 @@ const Feedback = () => {
                                 <div className="flex flex-col items-center text-center p-6 rounded-lg shadow-lg bg-white max-w-sm m-auto">
                                     <img
                                         src={`https://i.pravatar.cc/150?img=${index}`}
-                                        class="rounded-full w-32 shadow-lg"
+                                        className="rounded-full w-32 shadow-lg"
                                         alt="Avatar"
                                     />
-                                    <h5 class="text-xl font-medium leading-tight my-5">{item.name}</h5>
+                                    <h5 className="text-xl font-medium leading-tight mt-5">{item.name}</h5>
+                                    <h6 className='font-light text-sm leading-tight text-gray-400 mt-1 mb-5'>{item.occupation}</h6>
                                     <ReactStars
                                         size={20}
                                         count={5}
@@ -67,7 +68,7 @@ const Feedback = () => {
                                         edit={false}
                                         isHalf="true"
                                     />
-                                    <p class="text-gray-500">{item.description}</p>
+                                    <p className="text-gray-500">{item.description}</p>
                                 </div>
                             </div>
 

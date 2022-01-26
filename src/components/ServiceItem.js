@@ -37,7 +37,7 @@ const ServiceItem = ({ service, services }) => {
                     </div>
                     <div className="text-gray-500">
                         <p className="my-2 font-semibold">{rate}</p>
-                        <p className="overflow-ellipsis">{description}</p>
+                        <p className="overflow-ellipsis">{description.slice(0, 150)}...</p>
                     </div>
                 </div>
             </div>
