@@ -8,7 +8,7 @@ const Blog = () => {
     const [blog, setBlog] = useState([]);
     const [isDataLoading, setDataLoading] = useState(true);
     const [pageOffset, setPageOffset] = useState(0);
-    const [pageCount, setPageCount] = useState();
+    const [pageCount, setPageCount] = useState(0);
     // https://heroku-world-trip.herokuapp.com/
     useEffect(() => {
         setDataLoading(true);
@@ -24,8 +24,6 @@ const Blog = () => {
 
     const handlePageChange = (event) => {
         console.log(event);
-        // TODO Only change displayed selected page
-        // when its content is loaded in useEffect.
         setPageOffset(event.selected);
     };
 

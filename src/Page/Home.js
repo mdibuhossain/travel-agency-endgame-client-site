@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import BannerBG from '../components/BannerStyled';
+import Feedback from '../components/Feedback';
 import PageTitle from '../components/PageTitle';
 import Service from '../components/Service';
 import Blog from './Blog';
@@ -15,6 +16,7 @@ const Home = () => {
                 />
             </BannerBG>
             <Blog />
+            <Feedback />
         </div>
     );
 };
