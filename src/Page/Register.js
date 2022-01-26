@@ -5,7 +5,7 @@ import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 
 const Register = () => {
-    const { signUpWithEmail, setName, setEmail, setPassword, error } = useAuth();
+    const { signUpWithEmail, setName, setEmail, setPassword, error, email, password, name } = useAuth();
     // console.log(user);
 
     return (
@@ -36,6 +36,7 @@ const Register = () => {
                                 <input
                                     onBlur={(e) => { setName(e.target.value) }}
                                     id="name"
+                                    defaultValue={name}
                                     name="name"
                                     type="text"
                                     autoComplete="name"
@@ -51,6 +52,7 @@ const Register = () => {
                                 <input
                                     onBlur={(e) => { setEmail(e.target.value) }}
                                     id="email-address"
+                                    defaultValue={email}
                                     name="email"
                                     type="email"
                                     autoComplete="email"
@@ -66,6 +68,7 @@ const Register = () => {
                                 <input
                                     onBlur={(e) => { setPassword(e.target.value) }}
                                     id="password"
+                                    defaultValue={password}
                                     name="password"
                                     type="password"
                                     autoComplete="current-password"

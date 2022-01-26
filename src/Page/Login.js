@@ -5,7 +5,7 @@ import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 
 const Login = () => {
-    const { error, signWithGoogle, signWithFacebook, signInWithEmail, setEmail, setPassword } = useAuth();
+    const { error, signWithGoogle, signWithFacebook, signInWithEmail, setEmail, setPassword, email, password } = useAuth();
     return (
         <>
             <PageTitle title="Login" />
@@ -30,8 +30,9 @@ const Login = () => {
                                     Email address
                                 </label>
                                 <input
-                                    onBlur={(e) => { setEmail(e.target.value) }}
+                                    onChange={(e) => { setEmail(e.target.value) }}
                                     id="email-address"
+                                    defaultValue={email}
                                     name="email"
                                     type="email"
                                     autoComplete="email"
@@ -45,8 +46,9 @@ const Login = () => {
                                     Password
                                 </label>
                                 <input
-                                    onBlur={(e) => { setPassword(e.target.value) }}
+                                    onChange={(e) => { setPassword(e.target.value) }}
                                     id="password"
+                                    defaultValue={password}
                                     name="password"
                                     type="password"
                                     autoComplete="current-password"

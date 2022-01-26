@@ -108,18 +108,18 @@ export const useFirebase = () => {
 
     return {
         user,
-        error,
-        isLoading,
         name,
         email,
-        password,
-        setPassword,
-        setEmail,
-        setName,
+        error,
         logOut,
+        setName,
+        setEmail,
+        password,
+        isLoading,
+        setPassword,
         signWithGoogle,
-        signWithFacebook,
+        signInWithEmail,
         signUpWithEmail,
-        signInWithEmail
+        signWithFacebook,
     }
 }
