@@ -22,7 +22,8 @@ body{
 
 .pagination {
   display: flex;
-  padding-left: 0;
+  justify-content: center;
+  padding-bottom: 40px;
   list-style: none;
 }
 .page-item:first-child .page-link {

@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import BlogItem from '../components/BlogItem';
 import PageTitle from '../components/PageTitle';
 import { useDatabase } from '../Hook/useDatabase';
 
 const Blog = () => {
-    const { blog, isDataLoading } = useDatabase();
+    const [blog, setBlog] = useState([]);
+    const [isDataLoading, setDataLoading] = useState(true);
+    const [pageOffset, setPageOffset] = useState(0);
+    const [pageCount, setPageCount] = useState();
+    // https://heroku-world-trip.herokuapp.com/
+    useEffect(() => {
+        setDataLoading(true);
+        fetch('https://heroku-world-trip.herokuapp.com/blog')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.length);
+                setPageCount(Math.ceil(data.length / 6));
+                setBlog(data.slice(pageOffset*6, (pageOffset+1)*6));
+                setDataLoading(false);
+            })
+    }, [pageOffset])
+
+    const handlePageChange = (event) => {
+        console.log(event);
+        // TODO Only change displayed selected page
+        // when its content is loaded in useEffect.
+        setPageOffset(event.selected);
+    };
+
     return (
         <>
             <PageTitle title="Blog" />
@@ -19,6 +43,26 @@ const Blog = () => {
                         }
                     </div>
             }
+            <ReactPaginate
+                previousLabel="Previous"
+                nextLabel="Next"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                nextLinkClassName="page-link"
+                previousLinkClassName="page-link"
+                previousClassName="page-item"
+                nextClassName="page-item"
+                breakLabel="..."
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={6}
+                onPageChange={handlePageChange}
+                containerClassName="pagination"
+                activeClassName="active"
+                forcePage={pageOffset}
+            />
         </>
     );
 };
