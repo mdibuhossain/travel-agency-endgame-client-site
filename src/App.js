@@ -8,6 +8,8 @@ import AddBlog from './Page/AddBlog';
 import AddNewOrder from './Page/AddNewOrder';
 import Home from './Page/Home';
 import Login from './Page/Login';
+import MakeAdmin from './Page/MakeAdmin';
+import ManageServices from './Page/ManageServices';
 // import ManageOrder from './Page/ManageOrder';
 import MyOrder from './Page/MyOrder';
 import Profile from './Page/Profile';
@@ -49,6 +51,12 @@ function App() {
             {/* <PrivateRoute exact path="/manageorder">
               <ManageOrder />
             </PrivateRoute> */}
+            <PrivateRoute exact path="/makeadmin">
+              <MakeAdmin />
+            </PrivateRoute>
+            <PrivateRoute exact path="/manageservices">
+              <ManageServices />
+            </PrivateRoute>
             <PrivateRoute exact path="/addservice">
               <AddNewOrder />
             </PrivateRoute>
