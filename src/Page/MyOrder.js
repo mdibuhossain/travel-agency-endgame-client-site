@@ -5,7 +5,7 @@ import { useAuth } from '../Hook/useAuth';
 const MyOrder = () => {
     const [order, setOrder] = useState([]);
     useEffect(() => {
-        fetch('https://heroku-world-trip.herokuapp.com/orders')
+        fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => {
                 setOrder(data);
@@ -16,7 +16,7 @@ const MyOrder = () => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
         if (confDelete) {
-            const url = `https://heroku-world-trip.herokuapp.com/orders/${id}`;
+            const url = `http://localhost:5000/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

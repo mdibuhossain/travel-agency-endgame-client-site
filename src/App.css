@@ -5,7 +5,7 @@
 }
 
 body{
-  margin-top: 64px;
+  /* margin-top: 64px; */
   background-color: rgba(243, 243, 243, 0.767);
 }
 
@@ -18,6 +18,10 @@ body{
 /* login page and other page height */ 
 .fullPage {
   min-height: calc(100vh - 64px);
+}
+
+.blog_brief *{
+  font-size: 16px;
 }
 
 .pagination {

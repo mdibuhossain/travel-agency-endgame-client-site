@@ -6,6 +6,7 @@ import Service from './components/Service';
 import AuthProvider from './Context/AuthProvider';
 import AddBlog from './Page/AddBlog';
 import AddNewOrder from './Page/AddNewOrder';
+import BlogRequest from './Page/BlogRequest';
 import Home from './Page/Home';
 import Login from './Page/Login';
 import MakeAdmin from './Page/MakeAdmin';
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route exact path="/addblog">
               <AddBlog />
+            </Route>
+            <Route exact path="/pendingpost">
+              <BlogRequest />
             </Route>
             <Route exact path="/login">
               <Login />

@@ -9,15 +9,15 @@ const Blog = () => {
     const [isDataLoading, setDataLoading] = useState(true);
     const [pageOffset, setPageOffset] = useState(0);
     const [pageCount, setPageCount] = useState(0);
-    // https://heroku-world-trip.herokuapp.com/
+    // http://localhost:5000/
     useEffect(() => {
         setDataLoading(true);
-        fetch('https://heroku-world-trip.herokuapp.com/blog')
+        fetch('http://localhost:5000/blogs')
             .then(res => res.json())
             .then(data => {
                 console.log(data.length);
                 setPageCount(Math.ceil(data.length / 6));
-                setBlog(data.slice(pageOffset*6, (pageOffset+1)*6));
+                setBlog(data.slice(pageOffset * 6, (pageOffset + 1) * 6));
                 setDataLoading(false);
             })
     }, [pageOffset])
@@ -35,7 +35,7 @@ const Blog = () => {
                 isDataLoading ? <div className=" flex justify-center items-center my-10">
                     <div className="animate-spin rounded-full h-52 w-52 border-t-2 border-b-2 border-purple-300"></div>
                 </div> :
-                    <div className="grid md:grid-cols-3 gap-y-3 md:gap-5 w-9/12 mx-auto my-12">
+                    <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 md:gap-5 w-9/12 mx-auto my-12">
                         {
                             blog.map(item => <BlogItem key={item._id} blog={item} />)
                         }

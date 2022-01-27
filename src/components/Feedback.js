@@ -19,7 +19,7 @@ const Feedback = () => {
         slidesToShow: 3,
         slidesToScroll: 3,
         initialSlide: 0,
-        className: "w-full md:w-5/6 m-auto",
+        className: "w-full md:w-4/6 m-auto",
         responsive: [
             {
                 breakpoint: 1024,
@@ -31,6 +31,7 @@ const Feedback = () => {
             {
                 breakpoint: 768,
                 settings: {
+                    arrows: false,
                     slidesToShow: 1,
                     slidesToScroll: 1
                 }
@@ -38,6 +39,7 @@ const Feedback = () => {
             {
                 breakpoint: 480,
                 settings: {
+                    arrows: false,
                     slidesToShow: 1,
                     slidesToScroll: 1
                 }

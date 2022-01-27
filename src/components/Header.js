@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { HiOutlineX, HiOutlineBell, HiOutlineMenuAlt2 } from 'react-icons/hi';
+import { HiOutlineX, HiOutlineMenuAlt2 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { navList, privateNavList } from '../Utilities/utilities';
+import { navList } from '../Utilities/utilities';
 import { useAuth } from '../Hook/useAuth';
 
 
@@ -23,12 +23,12 @@ const Header = () => {
         else
             link.current = false;
     })
-    privateNavList.forEach(link => {
-        if (link.to.toLowerCase() === location.pathname.toLowerCase())
-            link.current = true;
-        else
-            link.current = false;
-    })
+    // privateNavList.forEach(link => {
+    //     if (link.to.toLowerCase() === location.pathname.toLowerCase())
+    //         link.current = true;
+    //     else
+    //         link.current = false;
+    // })
     return (
         <>
             <Disclosure as="nav" className="shadow-lg fixed top-0 z-10 w-screen bg-white">
@@ -66,7 +66,7 @@ const Header = () => {
                                                 </HashLink>
                                             ))}
 
-                                            {(isLoading) ? <span></span> : (user?.displayName || user?.email) ? privateNavList.map((item) => (
+                                            {/* {(isLoading) ? <span></span> : (user?.displayName || user?.email) ? privateNavList.map((item) => (
                                                 <HashLink
                                                     key={item.name}
                                                     to={item.to}
@@ -79,7 +79,7 @@ const Header = () => {
                                                     {item.name}
                                                 </HashLink>
                                             )) : <span></span>
-                                            }
+                                            } */}
                                         </div>
                                     </div>
                                 </div>
@@ -225,7 +225,7 @@ const Header = () => {
                                 ))
                                 }
 
-                                {(isLoading) ? <span></span> : (user?.displayName || user?.email) ? privateNavList.map((item) => (
+                                {/* {(isLoading) ? <span></span> : (user?.displayName || user?.email) ? privateNavList.map((item) => (
                                     <HashLink
                                         key={item.name}
                                         to={item.to}
@@ -238,7 +238,7 @@ const Header = () => {
                                         {item.name}
                                     </HashLink>
                                 )) : <span></span>
-                                }
+                                } */}
                             </div>
                         </Disclosure.Panel>
                     </>

@@ -13,6 +13,7 @@ const AddBlog = () => {
     const [title, setTitle] = useState('');
     const [cost, setCost] = useState(0);
     const [date, setDate] = useState(null);
+    const [bannerImage, setBannerImage] = useState('');
     // const [mainEditorContent, setMainEditorContent] = useState('');
     const onEditorStateChange = (e) => {
         setEditorState(e);
@@ -44,7 +45,14 @@ const AddBlog = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const blog_post = { title, date, rating: newRate, cost, description: currentDescription }
+        const blog_post = { title, date, image: bannerImage, rating: newRate, cost, description: currentDescription, status: 'pending' }
+        fetch('http://localhost:5000/blogs', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(blog_post)
+        }).then(data => console.log(data))
         // console.log(blog_post);
         // const contentBlock = htmlToDraft(currentDescription);
         // const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -69,6 +77,8 @@ const AddBlog = () => {
                         <input type="date" name="" id="travel_date" onChange={handleDate} className="border rounded-sm p-2 mb-5 hover:border-blue-400" />
                         <label htmlFor='postTitle'>*Title</label>
                         <input type="text" id='postTitle' onChange={(e) => setTitle(e.target.value)} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
+                        <label htmlFor='bannerImage'>*Banner image</label>
+                        <input type="text" id='bannerImage' placeholder="URL" onChange={(e) => setBannerImage(e.target.value)} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
                         <label htmlFor='postTitle'>*Rating</label>
                         <ReactStars {...ratingSettings} />
                         <Editor

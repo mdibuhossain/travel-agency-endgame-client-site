@@ -4,10 +4,10 @@ const navList = [
     { name: 'Services', to: '/services', current: false }
 ]
 
-const privateNavList = [
-    { name: 'My Orders', to: '/myorders', current: false },
-    // { name: 'Manage All Orders', to: '/manageorder', current: false },
-    { name: 'Add A New Service', to: '/addservice', current: false }
-]
+// const privateNavList = [
+//     { name: 'My Orders', to: '/myorders', current: false },
+//     // { name: 'Manage All Orders', to: '/manageorder', current: false },
+//     { name: 'Add A New Service', to: '/addservice', current: false }
+// ]
 
-export { navList, privateNavList };
+export { navList };

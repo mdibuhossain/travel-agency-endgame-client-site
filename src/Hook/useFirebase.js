@@ -31,7 +31,8 @@ export const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result.user)
-                user && redirect();
+                saveUser(result?.user?.email, result?.user?.displayName, "POST")
+                user && redirect()
             })
             .catch(error => setError('Something wrong with Google'))
             .finally(() => setIsLoading(false))
@@ -73,6 +74,7 @@ export const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 setUser(result.user)
+                saveUser(email, name, "POST");
                 updateProfile(auth.currentUser, {
                     displayName: `${name && name}`,
                     photoURL: `${name && "/assets/img/avator.png"}`
@@ -89,6 +91,17 @@ export const useFirebase = () => {
             .then(() => setUser({}))
         // .finally(() => setIsLoading(false))
         user && redirect();
+    }
+
+    const saveUser = (email, displayName, method) => {
+        const tmpUser = { email, displayName }
+        fetch('http://localhost:5000/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(tmpUser)
+        }).then(data => console.log(data))
     }
 
     useEffect(() => {

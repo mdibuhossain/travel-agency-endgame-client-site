@@ -12,7 +12,7 @@ const ServiceItem = ({ service, services }) => {
             const data = await services?.find(item => item._id === id);
             data.name = await user?.displayName;
             data.email = await user?.email;
-            axios.post('https://heroku-world-trip.herokuapp.com/orders', data)
+            axios.post('http://localhost:5000/orders', data)
                 .then(res => {
                     if (res.data.insertedId) {
                         alert('added to cart successfully');

@@ -4,7 +4,7 @@ import PageTitle from '../components/PageTitle';
 const ManageOrder = () => {
     const [order, setOrder] = useState([]);
     useEffect(() => {
-        fetch('https://heroku-world-trip.herokuapp.com/orders')
+        fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => {
                 setOrder(data);
@@ -14,7 +14,7 @@ const ManageOrder = () => {
     const handleDeleteOrder = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
         if (confDelete) {
-            const url = `https://heroku-world-trip.herokuapp.com/orders/${id}`;
+            const url = `http://localhost:5000/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
