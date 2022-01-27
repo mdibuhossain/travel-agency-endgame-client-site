@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 import { BsFacebook, BsTwitter, BsLinkedin, BsDribbble } from 'react-icons/bs';
-import { navList } from '../Utilities/utilities'
+import { navList } from '../Utilities/utilities';
 
 const Footer = () => {
     return (

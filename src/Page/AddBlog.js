@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, convertToRaw, ContentState, convertFromHTML } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import ReactStars from "react-rating-stars-component";
 
 const AddBlog = () => {
-    let editorState = EditorState.createEmpty();
-    const [currentDescription, setCurrentDescription] = useState(editorState);
-    const onEditorStateChange = (editorState) => {
-        setCurrentDescription(editorState);
+    let [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [currentDescription, setCurrentDescription] = useState('');
+    const [newRate, setNewRate] = useState(0);
+    const [title, setTitle] = useState('');
+    const [cost, setCost] = useState(0);
+    const [date, setDate] = useState(null);
+    // const [mainEditorContent, setMainEditorContent] = useState('');
+    const onEditorStateChange = (e) => {
+        setEditorState(e);
+        setCurrentDescription(draftToHtml(convertToRaw(e.getCurrentContent())));
     }
     const editorStyle = {
         border: '1px solid #d6cdcd',
@@ -19,19 +26,66 @@ const AddBlog = () => {
         height: '300px',
         width: '100%',
     };
-    console.log(draftToHtml(convertToRaw(currentDescription.getCurrentContent())));
+    const handleDate = (e) => {
+        const dt = new Date(e.target.value);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        // console.log(dt.toLocaleDateString('en-GB', options).split(' '));
+        setDate(dt.toLocaleDateString('en-GB', options).split(' '));
+    }
+    const ratingSettings = {
+        size: 40,
+        count: 5,
+        isHalf: true,
+        value: newRate,
+        onChange: (newValue) => {
+            setNewRate(newValue);
+            console.log(`Example 3: new value is ${newValue}`);
+        }
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const blog_post = { title, date, rating: newRate, cost, description: currentDescription }
+        // console.log(blog_post);
+        // const contentBlock = htmlToDraft(currentDescription);
+        // const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+        // const _editorState = EditorState.createWithContent(contentState);
+        // setMainEditorContent(_editorState);
+        // console.log(_editorState);
+    }
     return (
-        <div className='rounded-lg shadow-lg bg-white w-11/12 m-auto p-10 my-10'>
-            <label htmlFor='postTitle'>*Title</label>
-            <input type="text" id='postTitle' className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" required />
-            <Editor
-                editorState={currentDescription}
-                wrapperClassName="demo-wrapper"
-                editorClassName="demo-editor"
-                editorStyle={editorStyle}
-                onEditorStateChange={onEditorStateChange}
-            />
-        </div>
+        <>
+            <div className="rounded-lg shadow-lg bg-white w-11/12 m-auto p-10 my-10">
+                <form>
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: currentDescription
+                        }}
+                    >
+                    </div>
+                </form>
+                <form onSubmit={handleSubmit}>
+                    <div className="flex flex-col">
+                        <label htmlFor='travel_date'>*Date</label>
+                        <input type="date" name="" id="travel_date" onChange={handleDate} className="border rounded-sm p-2 mb-5 hover:border-blue-400" />
+                        <label htmlFor='postTitle'>*Title</label>
+                        <input type="text" id='postTitle' onChange={(e) => setTitle(e.target.value)} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
+                        <label htmlFor='postTitle'>*Rating</label>
+                        <ReactStars {...ratingSettings} />
+                        <Editor
+                            editorState={editorState}
+                            wrapperClassName="demo-wrapper"
+                            editorClassName="demo-editor"
+                            editorStyle={editorStyle}
+                            onEditorStateChange={onEditorStateChange}
+                            placeholder="Your story"
+                        />
+                        <label className='mt-5' htmlFor='travelCost'>*Total cost</label>
+                        <input type="number" placeholder='$' id='travelCost' onChange={(e) => setCost(e.target.value)} className="border rounded-sm p-2 w-full hover:border-blue-400" />
+                    </div>
+                    <button type='submit' className="px-5 py-2 mt-5 rounded-md bg-blue-600 text-gray-100 font-semibold hover:bg-blue-700">Submit</button>
+                </form>
+            </div>
+        </>
     );
 };
 
