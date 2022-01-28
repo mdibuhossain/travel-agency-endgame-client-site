@@ -20,6 +20,7 @@ const MakeAdmin = () => {
     }
     return (
         <div className='flex flex-col lg:w-4/12 md:w-6/12 w-11/12 mx-auto mt-10 bg-white p-5 rounded-lg'>
+            <h1 className="text-center font-semibold text-xl mb-5">Admin role</h1>
             {
                 fetchedUsers.map(item => (
                     <div key={item._id} class="grid grid-cols-1 sm:grid-cols-2 m-2">

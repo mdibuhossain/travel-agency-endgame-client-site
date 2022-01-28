@@ -1,19 +1,24 @@
 import axios from 'axios';
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
 import PageTitle from '../components/PageTitle';
 import { useAuth } from '../Hook/useAuth';
 
 const AddNewOrder = () => {
-
-    const { register, handleSubmit, reset } = useForm();
+    const [data, setData] = useState({});
     const { user } = useAuth();
-    const onSubmit = data => {
+
+    const handleOnChange = (e) => {
+        const tmpData = { ...data };
+        tmpData[e.target.name] = e.target.value;
+        setData(tmpData);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
         axios.post('http://localhost:5000/services', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');
-                    reset();
                 }
             })
     }
@@ -24,15 +29,15 @@ const AddNewOrder = () => {
         <div className="flex h-screen flex-col items-center justify-center">
             <PageTitle title="Dashboard" />
             <h1 className="text-5xl font-semibold my-5">Add new service</h1>
-            <form className="grid grid-col-1 w-1/2 mx-auto" onSubmit={handleSubmit(onSubmit)}>
-                <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Name" defaultValue={user.displayName} {...register("name", { required: true, maxLength: 100 })} />
-                <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Title" defaultValue="" {...register("title", { required: true, maxLength: 80 })} />
-                <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Email" defaultValue="" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
-                <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Price" defaultValue="" {...register("price")} />
-                <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Rating" defaultValue="" {...register("rate")} />
-                <textarea className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Description" defaultValue="" {...register("description")} />
-                <input className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Image URL" defaultValue="" {...register("img")} />
-                <input className="py-3 rounded-lg bg-blue-300" type="submit" />
+            <form className="grid grid-col-1 w-1/2 mx-auto" onSubmit={handleSubmit}>
+                <input onChange={handleOnChange} disabled className="border my-1 py-2 px-1 rounded-md pl-3 text-gray-400" type="text" placeholder="Name" name="displayName" defaultValue={user.displayName} />
+                <input onChange={handleOnChange} disabled className="border my-1 py-2 px-1 rounded-md pl-3 text-gray-400" type="text" placeholder="Email" name="email" defaultValue={user.email} />
+                <input onChange={handleOnChange} className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Title" name="title" />
+                <input onChange={handleOnChange} className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Price" name="price" />
+                <input onChange={handleOnChange} className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Rating" name="rate" />
+                <textarea onChange={handleOnChange} className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Description" name="description" />
+                <input onChange={handleOnChange} className="border my-1 py-2 px-1 rounded-md pl-3" type="text" placeholder="Image URL" name="img" />
+                <input className="py-3 rounded-lg bg-blue-300 cursor-pointer" type="submit" />
             </form>
         </div>
     );

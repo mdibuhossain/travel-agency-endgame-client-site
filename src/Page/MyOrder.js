@@ -34,7 +34,7 @@ const MyOrder = () => {
         <div>
             <PageTitle title="Dashboard" />
             <div className="text-center mt-8">
-                <h1 className="text-4xl font-bold">My order</h1>
+                <h1 className="text-4xl font-bold">My order - {order.length}</h1>
             </div>
 
             {
@@ -46,7 +46,7 @@ const MyOrder = () => {
                                 <div key={item._id} className="my-3">
                                     <div key={item._id} className="flex justify-center items-center bg-white py-3 px-4 rounded">
                                         <h1 className="font-semibold">{item.title} :: ${item.price}</h1>
-                                        <button onClick={() => handleDeleteMyOrder(item._id)} className="bg-red-400 py-1 px-3 mx-3 rounded">X</button>
+                                        <button onClick={() => handleDeleteMyOrder(item._id)} className="bg-red-400 py-1 px-3 mx-3 rounded text-gray-50 font-bold">X</button>
                                     </div>
                                 </div>
                             )
