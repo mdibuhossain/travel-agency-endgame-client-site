@@ -4,6 +4,7 @@ import { useAuth } from '../Hook/useAuth';
 
 const MyOrder = () => {
     const [order, setOrder] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [currentOrder, setCurrentOrder] = useState(order);
     const { user } = useAuth();
     useEffect(() => {
@@ -13,6 +14,7 @@ const MyOrder = () => {
                 const tmpData = data.filter(item => user?.email === item?.email);
                 setOrder(tmpData);
                 setCurrentOrder(tmpData);
+                setIsLoading(false)
             })
     }, [currentOrder])
     const handleDeleteMyOrder = (id) => {
@@ -39,10 +41,12 @@ const MyOrder = () => {
             <div className="text-center mt-8">
                 <h1 className="text-4xl font-bold">My order - {order.length}</h1>
             </div>
-
-            {
-                <div className="flex justify-center items-center flex-col my-8">
-                    {
+            <div className="flex justify-center items-center flex-col my-8">
+                {
+                    isLoading ? <div className=" flex justify-center items-center">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-400"></div>
+                    </div>
+                        :
                         currentOrder.map(item => {
                             return (
                                 (user.email === item.email) &&
@@ -54,9 +58,8 @@ const MyOrder = () => {
                                 </div>
                             )
                         })
-                    }
-                </div>
-            }
+                }
+            </div>
 
         </div>
     );
