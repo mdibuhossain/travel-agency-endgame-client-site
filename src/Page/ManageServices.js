@@ -23,13 +23,13 @@ const ManageServices = () => {
             <h1 className="text-center font-semibold text-xl mb-5 uppercase">manage services - {services.length}</h1>
             {
                 currentServices.map(item => (
-                    <div className="flex justify-between items-center my-2">
+                    <div key={item._id} className="flex justify-between items-center my-2">
                         <div key={item._id} className="flex justify-between w-9/12">
                             <p>{item.title}</p>
                             <p>${item.price}</p>
                         </div>
                         <div className="flex justify-center items-center">
-                            <button onClick={() => handleDeleteService(item._id)} className="text-center bg-red-500 px-2 text-lg rounded-full text-gray-50">X</button>
+                            <button onClick={() => handleDeleteService(item._id)} className="text-center bg-red-500 px-2 text-lg rounded-full text-gray-50 cursor-pointer">X</button>
                         </div>
                     </div>
                 ))

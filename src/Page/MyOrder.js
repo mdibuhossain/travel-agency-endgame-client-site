@@ -4,14 +4,17 @@ import { useAuth } from '../Hook/useAuth';
 
 const MyOrder = () => {
     const [order, setOrder] = useState([]);
+    const [currentOrder, setCurrentOrder] = useState(order);
+    const { user } = useAuth();
     useEffect(() => {
         fetch('http://localhost:5000/orders')
             .then(res => res.json())
             .then(data => {
-                setOrder(data);
+                const tmpData = data.filter(item => user?.email === item?.email);
+                setOrder(tmpData);
+                setCurrentOrder(tmpData);
             })
-    })
-    const { user } = useAuth();
+    }, [currentOrder])
     const handleDeleteMyOrder = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
@@ -25,7 +28,7 @@ const MyOrder = () => {
                     if (data.deleteCount > 0) {
                         alert('Successfully deleted');
                         const remService = order.filter(item => item._id !== id);
-                        setOrder(remService);
+                        setCurrentOrder(remService);
                     }
                 })
         }
@@ -40,9 +43,9 @@ const MyOrder = () => {
             {
                 <div className="flex justify-center items-center flex-col my-8">
                     {
-                        order.map(item => {
+                        currentOrder.map(item => {
                             return (
-                                (user.displayName === item.name) &&
+                                (user.email === item.email) &&
                                 <div key={item._id} className="my-3">
                                     <div key={item._id} className="flex justify-center items-center bg-white py-3 px-4 rounded">
                                         <h1 className="font-semibold">{item.title} :: ${item.price}</h1>

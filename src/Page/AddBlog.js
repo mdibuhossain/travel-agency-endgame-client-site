@@ -71,17 +71,17 @@ const AddBlog = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="flex flex-col">
                         <label htmlFor='travel_date'>*Date</label>
-                        <input type="date" name="" id="travel_date" onChange={handleDate} className="border rounded-sm p-2 mb-5 hover:border-blue-400" />
+                        <input required type="date" name="" id="travel_date" onChange={handleDate} className="border rounded-sm p-2 mb-5 hover:border-blue-400" />
                         <label htmlFor='postTitle'>*Title</label>
-                        <input type="text" id='postTitle' onChange={(e) => setTitle(e.target.value)} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
+                        <input required type="text" id='postTitle' onChange={(e) => setTitle(e.target.value)} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
                         <label htmlFor='bannerImage'>*Banner image</label>
-                        <input type="text" id='bannerImage' placeholder="URL" onChange={(e) => setBannerImage(e.target.value)} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
+                        <input required type="text" id='bannerImage' placeholder="URL" onChange={(e) => setBannerImage(e.target.value)} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
                         <label htmlFor='postTitle'>*Rating</label>
                         <ReactStars {...ratingSettings} />
                         <label htmlFor='postTitle'>*Categories (separate by comma)</label>
-                        <input type="text" id='bannerImage' placeholder="Categories" onChange={(e) => setCategories(e.target.value.split(','))} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
+                        <input required type="text" id='bannerImage' placeholder="Categories" onChange={(e) => setCategories(e.target.value.split(','))} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
                         <label htmlFor='postTitle'>*Location</label>
-                        <input type="text" id='bannerImage' placeholder="Location" onChange={(e) => setLocation(e.target.value.split(','))} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
+                        <input required type="text" id='bannerImage' placeholder="Location" onChange={(e) => setLocation(e.target.value.split(','))} className="border rounded-sm p-2 w-full mb-5 hover:border-blue-400" />
                         <Editor
                             editorState={editorState}
                             wrapperClassName="demo-wrapper"
@@ -91,9 +91,9 @@ const AddBlog = () => {
                             placeholder="Your story"
                         />
                         <label className='mt-5' htmlFor='travelCost'>*Brief</label>
-                        <textarea onChange={(e) => setBrief(e.target.value)} placeholder='Summary' className="border rounded-sm p-2 hover:border-blue-400 h-48" />
+                        <textarea required onChange={(e) => setBrief(e.target.value)} placeholder='Summary' className="border rounded-sm p-2 hover:border-blue-400 h-48" />
                         <label className='mt-5' htmlFor='travelCost'>*Total cost</label>
-                        <input type="number" placeholder='$' id='travelCost' onChange={(e) => setCost(e.target.value)} className="border rounded-sm p-2 w-full hover:border-blue-400" />
+                        <input required type="number" placeholder='$' id='travelCost' onChange={(e) => setCost(e.target.value)} className="border rounded-sm p-2 w-full hover:border-blue-400" />
                     </div>
                     <button type='submit' className="px-5 py-2 mt-5 rounded-md bg-blue-600 text-gray-100 font-semibold hover:bg-blue-700">Submit</button>
                 </form>

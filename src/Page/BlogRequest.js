@@ -11,7 +11,7 @@ const BlogRequest = () => {
                 setBlogList(data)
                 setCurrentList(data)
             })
-    }, [blogList])
+    }, [currentList])
     const handleAllowBlog = (id, status) => {
         fetch(`http://localhost:5000/blogs/allow/${id}`, {
             method: "PUT",
@@ -34,7 +34,7 @@ const BlogRequest = () => {
             <div className='flex flex-col items-center'>
                 {
                     currentList.map(item => (
-                        <div key={item._id} className='border-t-2 border-b-2 py-2 my-2 px-5'>
+                        <div key={item._id} className='border-t-2 border-b-2 py-2 my-2 px-5 w-9/12 md:w-6/12'>
                             <p className="font-semibold">{item.title}</p>
                             <p>by: <span className="text-blue-400">{item.email}</span> <span className="text-xs text-gray-400">({item.displayName})</span></p>
                             <div className="flex items-center">
