@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 
 const Header = () => {
-    const { user, logOut, isLoading } = useAuth();
+    const { user, logOut, isLoading, admin } = useAuth();
 
     const location = useLocation();
     navList.forEach(link => {
@@ -65,21 +65,6 @@ const Header = () => {
                                                     {item.name}
                                                 </HashLink>
                                             ))}
-
-                                            {/* {(isLoading) ? <span></span> : (user?.displayName || user?.email) ? privateNavList.map((item) => (
-                                                <HashLink
-                                                    key={item.name}
-                                                    to={item.to}
-                                                    className={classNames(
-                                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-500 hover:bg-gray-700 hover:text-white',
-                                                        'px-3 py-2 rounded-md text-sm font-medium'
-                                                    )}
-                                                    aria-current={item.current ? 'page' : undefined}
-                                                >
-                                                    {item.name}
-                                                </HashLink>
-                                            )) : <span></span>
-                                            } */}
                                         </div>
                                     </div>
                                 </div>
@@ -88,13 +73,6 @@ const Header = () => {
                                         <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-purple-300"></div>
                                     </div> :
                                         (user?.displayName || user?.email) ? <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                            {/* <button
-                                                type="button"
-                                                className="bg-gray-200 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                                            >
-                                                <span className="sr-only">View notifications</span>
-                                                <HiOutlineBell className="h-6 w-6" aria-hidden="true" />
-                                            </button> */}
 
                                             {/* Profile dropdown */}
                                             <Menu as="div" className="ml-3 relative">
@@ -118,46 +96,51 @@ const Header = () => {
                                                     leaveTo="transform opacity-0 scale-95"
                                                 >
                                                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <Link
-                                                                    to="/makeadmin"
-                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                                >
-                                                                    Make Admin
-                                                                </Link>
-                                                            )}
-                                                        </Menu.Item>
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <Link
-                                                                    to="/manageservices"
-                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                                >
-                                                                    Manage Services
-                                                                </Link>
-                                                            )}
-                                                        </Menu.Item>
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <Link
-                                                                    to="/addservice"
-                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                                >
-                                                                    Add Services
-                                                                </Link>
-                                                            )}
-                                                        </Menu.Item>
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <Link
-                                                                    to="/pendingpost"
-                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                                >
-                                                                    Blog request
-                                                                </Link>
-                                                            )}
-                                                        </Menu.Item>
+                                                        {
+                                                            admin &&
+                                                            <>
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <Link
+                                                                            to="/manageservices"
+                                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                        >
+                                                                            Manage Services
+                                                                        </Link>
+                                                                    )}
+                                                                </Menu.Item>
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <Link
+                                                                            to="/makeadmin"
+                                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                        >
+                                                                            Make Admin
+                                                                        </Link>
+                                                                    )}
+                                                                </Menu.Item>
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <Link
+                                                                            to="/addservice"
+                                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                        >
+                                                                            Add Services
+                                                                        </Link>
+                                                                    )}
+                                                                </Menu.Item>
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <Link
+                                                                            to="/pendingpost"
+                                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                        >
+                                                                            Blog request
+                                                                        </Link>
+                                                                    )}
+                                                                </Menu.Item>
+                                                            </>
+                                                        }
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <Link

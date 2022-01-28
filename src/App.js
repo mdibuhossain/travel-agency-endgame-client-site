@@ -16,6 +16,7 @@ import MyOrder from './Page/MyOrder';
 import Profile from './Page/Profile';
 import Register from './Page/Register';
 import UpdateService from './Page/UpdateService';
+import AdminRoute from './PrivateRoute/AdminRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
@@ -34,36 +35,33 @@ function App() {
             <Route exact path="/services">
               <Service />
             </Route>
-            <Route exact path="/addblog">
-              <AddBlog />
-            </Route>
-            <Route exact path="/pendingpost">
-              <BlogRequest />
-            </Route>
             <Route exact path="/login">
               <Login />
             </Route>
             <Route exact path="/register">
               <Register />
             </Route>
+            <PrivateRoute exact path="/addblog">
+              <AddBlog />
+            </PrivateRoute>
             <PrivateRoute exact path="/profile">
               <Profile />
             </PrivateRoute>
             <PrivateRoute exact path="/myorders">
               <MyOrder />
             </PrivateRoute>
-            {/* <PrivateRoute exact path="/manageorder">
-              <ManageOrder />
-            </PrivateRoute> */}
-            <PrivateRoute exact path="/makeadmin">
+            <AdminRoute exact path="/pendingpost">
+              <BlogRequest />
+            </AdminRoute>
+            <AdminRoute exact path="/makeadmin">
               <MakeAdmin />
-            </PrivateRoute>
-            <PrivateRoute exact path="/manageservices">
+            </AdminRoute>
+            <AdminRoute exact path="/manageservices">
               <ManageServices />
-            </PrivateRoute>
-            <PrivateRoute exact path="/addservice">
+            </AdminRoute>
+            <AdminRoute exact path="/addservice">
               <AddNewOrder />
-            </PrivateRoute>
+            </AdminRoute>
             <PrivateRoute exact path="/service/updateservice/:id">
               <UpdateService />
             </PrivateRoute>

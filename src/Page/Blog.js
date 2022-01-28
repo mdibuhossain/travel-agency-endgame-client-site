@@ -37,7 +37,7 @@ const Blog = () => {
                 </div> :
                     <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 md:gap-5 w-9/12 mx-auto my-12">
                         {
-                            blog.map(item => <BlogItem key={item._id} blog={item} />)
+                            blog.map(item => (item.status === 'allow') && <BlogItem key={item._id} blog={item} />)
                         }
                     </div>
             }

@@ -66,7 +66,7 @@ const Feedback = () => {
                                     <ReactStars
                                         size={20}
                                         count={5}
-                                        value={item.rate}
+                                        value={parseFloat(item.rate)}
                                         edit={false}
                                         isHalf="true"
                                     />
