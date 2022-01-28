@@ -34,7 +34,7 @@ const Footer = () => {
                 <div className="my-5 text-left">
                     <p className="mb-2 font-bold">Address</p>
                     <div className="font-semibold text-gray-300">
-                        <p>WorldTrip</p>
+                        <p>TravelPagla</p>
                         <p>8100 Gopalganj</p>
                         <p>Bangladesh</p>
                     </div>
@@ -43,7 +43,7 @@ const Footer = () => {
             <div className="sm:w-9/12 w-11/12 text-gray-400 mt-5 mx-auto text-center">
                 <p>Developed by <a className="font-semibold" target="_blank" rel="noreferrer" href="https://github.com/mdibuhossain">Ibrahim Hossain</a></p>
                 <hr className="border-gray-600 my-2" />
-                <p>&copy; 2021 All rights reserved by WorldTrip</p>
+                <p>&copy; 2021 All rights reserved by TravelPagla</p>
             </div>
         </div>
     );

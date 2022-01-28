@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 const PageTitle = ({ title }) => {
     return (
         <Helmet>
-            <title>WorldTrip - {title}</title>
+            <title>TravelPagla - {title}</title>
         </Helmet>
     );
 };

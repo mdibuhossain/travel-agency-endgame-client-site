@@ -1,5 +1,5 @@
-# WorldTrip
-## [Live Site](https://world-trip-6e379.web.app/)
+# TravelPagla
+## [Live Site](https://travel-pagla.web.app/)
 
 
 ### `Technology stack`
@@ -7,8 +7,7 @@
 - HTML
 - Tailwind CSS
 - ReactJS
-- SwiperJS
-- React-vanilla-Tilt
+- React Slick
 - React Router DOM
 - Firebase Auth
 - NodeJS

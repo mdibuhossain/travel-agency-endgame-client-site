@@ -29,7 +29,6 @@ const Blog = () => {
 
     return (
         <>
-            <PageTitle title="Blog" />
             <h1 className="text-5xl text-center mt-8 font-semibold">Blogs</h1>
             {
                 isDataLoading ? <div className=" flex justify-center items-center my-10">
