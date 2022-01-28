@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 export const useDatabase = () => {
     const [blog, setBlog] = useState([]);
     const [isDataLoading, setDataLoading] = useState(true);
-    // http://localhost:5000/
+    // https://travel-pagla.herokuapp.com/
     useEffect(() => {
         setDataLoading(true);
-        fetch('http://localhost:5000/blogs')
+        fetch('https://travel-pagla.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => {
                 setBlog(data);

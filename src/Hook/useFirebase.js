@@ -98,7 +98,7 @@ export const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const tmpUser = { email, displayName }
-        fetch('http://localhost:5000/users', {
+        fetch('https://travel-pagla.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -108,7 +108,7 @@ export const useFirebase = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/admin/${user?.email}`)
+        fetch(`https://travel-pagla.herokuapp.com/users/admin/${user?.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data?.admin))
     }, [user])

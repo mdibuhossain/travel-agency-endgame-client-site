@@ -6,7 +6,7 @@ const BlogRequest = () => {
     const [currentList, setCurrentList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://travel-pagla.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => {
                 setBlogList(data)
@@ -15,7 +15,7 @@ const BlogRequest = () => {
             })
     }, [currentList])
     const handleAllowBlog = (id, status) => {
-        fetch(`http://localhost:5000/blogs/allow/${id}`, {
+        fetch(`https://travel-pagla.herokuapp.com/blogs/allow/${id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -24,7 +24,7 @@ const BlogRequest = () => {
         }).then(data => console.log(data))
     }
     const handleDeleteBlog = (id) => {
-        fetch(`http://localhost:5000/blogs/delete/${id}`, {
+        fetch(`https://travel-pagla.herokuapp.com/blogs/delete/${id}`, {
             method: "DELETE"
         }).then(data => console.log(data))
         const tmpList = blogList.filter(item => item._id !== id);

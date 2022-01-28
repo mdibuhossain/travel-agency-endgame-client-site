@@ -5,7 +5,7 @@ const ManageServices = () => {
     const [currentServices, setCurrentServices] = React.useState([]);
     const [isLoading, setIsLoading] = useState(true);
     React.useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://travel-pagla.herokuapp.com/services')
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)
@@ -14,7 +14,7 @@ const ManageServices = () => {
             })
     }, [currentServices])
     const handleDeleteService = (id) => {
-        fetch(`http://localhost:5000/services/${id}`, {
+        fetch(`https://travel-pagla.herokuapp.com/services/${id}`, {
             method: 'DELETE'
         }).then(data => console.log(data))
         const tmpServices = services.filter(item => item._id !== id);

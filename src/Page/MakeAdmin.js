@@ -6,7 +6,7 @@ const MakeAdmin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const { user } = useAuth();
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://travel-pagla.herokuapp.com/users')
             .then(res => res.json())
             .then(data => {
                 setFetchedUsers(data)
@@ -14,7 +14,7 @@ const MakeAdmin = () => {
             })
     }, [fetchedUsers])
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/makeadmin/${id}`, {
+        fetch(`https://travel-pagla.herokuapp.com/users/makeadmin/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
