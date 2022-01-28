@@ -5,7 +5,7 @@ import { useAuth } from '../Hook/useAuth';
 const MyOrder = () => {
     const [order, setOrder] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [currentOrder, setCurrentOrder] = useState(order);
+    const [updateCount, setUpdateCount] = useState(0);
     const { user } = useAuth();
     useEffect(() => {
         fetch('https://travel-pagla.herokuapp.com/orders')
@@ -13,10 +13,9 @@ const MyOrder = () => {
             .then(data => {
                 const tmpData = data.filter(item => user?.email === item?.email);
                 setOrder(tmpData);
-                setCurrentOrder(tmpData);
                 setIsLoading(false)
             })
-    }, [currentOrder])
+    }, [updateCount])
     const handleDeleteMyOrder = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
         console.log(confDelete);
@@ -27,10 +26,10 @@ const MyOrder = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.deleteCount > 0) {
-                        alert('Successfully deleted');
-                        const remService = order.filter(item => item._id !== id);
-                        setCurrentOrder(remService);
+                    console.log(data);
+                    if (data?.deletedCount > 0) {
+                        setUpdateCount(updateCount + 1)
+                        alert('Successfully deleted')
                     }
                 })
         }
@@ -47,7 +46,7 @@ const MyOrder = () => {
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-400"></div>
                     </div>
                         :
-                        currentOrder.map(item => {
+                        order.map(item => {
                             return (
                                 (user.email === item.email) &&
                                 <div key={item._id} className="my-3">

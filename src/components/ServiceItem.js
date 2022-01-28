@@ -9,9 +9,9 @@ const ServiceItem = ({ service, services }) => {
     const { title, price, rate, description, img, _id } = service;
     const handleAddtoCart = async (id) => {
         if (user?.uid) {
-            const data = await services?.find(item => item._id === id);
-            data.name = await user?.displayName;
-            data.email = await user?.email;
+            const data = services?.find(item => item._id === id);
+            data.name = user?.displayName;
+            data.email = user?.email;
             axios.post('https://travel-pagla.herokuapp.com/orders', data)
                 .then(res => {
                     if (res.data.insertedId) {
@@ -21,6 +21,7 @@ const ServiceItem = ({ service, services }) => {
                         alert(`${res.data.message}`);
                     }
                 })
+            console.log(data)
         }
         else
             history.push('/login');

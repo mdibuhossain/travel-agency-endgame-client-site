@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 
 const ManageServices = () => {
     const [services, setServices] = React.useState([]);
-    const [currentServices, setCurrentServices] = React.useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [updateCount, setUpdateCount] = useState(0);
     React.useEffect(() => {
         fetch('https://travel-pagla.herokuapp.com/services')
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)
                 setServices(data)
-                setCurrentServices(data)
             })
-    }, [currentServices])
+    }, [updateCount])
     const handleDeleteService = (id) => {
         fetch(`https://travel-pagla.herokuapp.com/services/${id}`, {
             method: 'DELETE'
-        }).then(data => console.log(data))
-        const tmpServices = services.filter(item => item._id !== id);
-        setCurrentServices(tmpServices);
+        }).then(res => res.json())
+            .then(data => {
+                if (data?.deletedCount)
+                    setUpdateCount(updateCount + 1)
+            })
     }
     return (
         <div className="flex flex-col lg:w-4/12 md:w-6/12 w-11/12 mx-auto mt-10 bg-white p-5 rounded-lg">
@@ -28,7 +29,7 @@ const ManageServices = () => {
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-400"></div>
                 </div>
                     :
-                    currentServices.map(item => (
+                    services.map(item => (
                         <div key={item._id} className="flex justify-between items-center my-2">
                             <div key={item._id} className="flex justify-between w-9/12">
                                 <p>{item.title}</p>

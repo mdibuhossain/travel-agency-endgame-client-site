@@ -34,7 +34,13 @@ export const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result.user)
-                saveUser(result?.user?.email, result?.user?.displayName, "POST")
+                fetch('https://travel-pagla.herokuapp.com/users')
+                    .then(res => res.json())
+                    .then(data => {
+                        const tmpData = data.find(item => item.email === result?.user?.email)
+                        if (tmpData.email)
+                            saveUser(result?.user?.email, result?.user?.displayName, "POST")
+                    })
                 user && redirect()
             })
             .catch(error => setError('Something wrong with Google'))

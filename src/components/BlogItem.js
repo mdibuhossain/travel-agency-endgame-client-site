@@ -3,6 +3,7 @@ import ReactStars from "react-rating-stars-component";
 import { MdDateRange } from 'react-icons/md';
 import { MdModeComment } from 'react-icons/md';
 import htmlToDraft from 'html-to-draftjs';
+import { NavLink } from 'react-router-dom';
 
 const BlogItem = (props) => {
     const { blog } = props;
@@ -10,9 +11,9 @@ const BlogItem = (props) => {
     return (
         <div className="flex justify-center">
             <div className="rounded-lg shadow-lg bg-white max-w-sm w-full">
-                <a href="#!">
+                <NavLink to={`/blog/${blog._id}`}>
                     <img className="rounded-t-lg w-full" src={blog.image} alt="" />
-                </a>
+                </NavLink>
                 <div className="p-6 w-full">
                     <p className="text-gray-400 w-auto">{blog.date[0]} {blog.date[1]}, {blog.date[2]}</p>
                     <h3 className="text-gray-900 text-xl font-semibold mb-2 w-full">{blog.title.slice(0, 60)}{blog.title.length > 60 && '...'}</h3>
@@ -32,7 +33,9 @@ const BlogItem = (props) => {
                         }}
                     >
                     </div> */}
-                    <button type="button" className=" inline-block mt-4 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">See more</button>
+                    <button type="button" className=" inline-block mt-4 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                        <NavLink to={`/blog/${blog._id}`}>See more</NavLink>
+                    </button>
                 </div>
             </div>
         </div>

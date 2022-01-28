@@ -1,19 +1,18 @@
-import { Dialog } from '@headlessui/react';
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const BlogRequest = () => {
     const [blogList, setBlogList] = useState([]);
-    const [currentList, setCurrentList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [updateCount, setUpdateCount] = useState(0);
     useEffect(() => {
         fetch('https://travel-pagla.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => {
                 setBlogList(data)
-                setCurrentList(data)
                 setIsLoading(false);
             })
-    }, [currentList])
+    }, [updateCount])
     const handleAllowBlog = (id, status) => {
         fetch(`https://travel-pagla.herokuapp.com/blogs/allow/${id}`, {
             method: "PUT",
@@ -21,14 +20,20 @@ const BlogRequest = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({ status })
-        }).then(data => console.log(data))
+        }).then(res => res.json())
+            .then(data => {
+                if (data?.modifiedCount)
+                    setUpdateCount(updateCount + 1)
+            })
     }
     const handleDeleteBlog = (id) => {
         fetch(`https://travel-pagla.herokuapp.com/blogs/delete/${id}`, {
             method: "DELETE"
-        }).then(data => console.log(data))
-        const tmpList = blogList.filter(item => item._id !== id);
-        setCurrentList(tmpList);
+        }).then(res => res.json())
+            .then(data => {
+                if (data?.deletedCount)
+                    setUpdateCount(updateCount + 1);
+            })
     }
     return (
         <div>
@@ -39,9 +44,9 @@ const BlogRequest = () => {
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-400"></div>
                     </div>
                         :
-                        currentList.map(item => (
+                        blogList.map(item => (
                             <div key={item._id} className='border-t-2 border-b-2 py-2 my-2 px-5 w-9/12 md:w-6/12'>
-                                <p className="font-semibold">{item.title}</p>
+                                <NavLink to={`/blog/${item._id}`}><p className="font-semibold text-blue-600">{item.title}</p></NavLink>
                                 <p>by: <span className="text-blue-400">{item.email}</span> <span className="text-xs text-gray-400">({item.displayName})</span></p>
                                 <div className="flex items-center">
                                     <div>

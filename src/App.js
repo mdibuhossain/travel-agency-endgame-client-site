@@ -15,6 +15,7 @@ import ManageServices from './Page/ManageServices';
 import MyOrder from './Page/MyOrder';
 import Profile from './Page/Profile';
 import Register from './Page/Register';
+import SingleBlog from './Page/SingleBlog';
 import UpdateService from './Page/UpdateService';
 import AdminRoute from './PrivateRoute/AdminRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
@@ -37,6 +38,9 @@ function App() {
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/blog/:id">
+              <SingleBlog />
             </Route>
             <Route exact path="/register">
               <Register />
