@@ -19,7 +19,6 @@ import SingleBlog from './Page/SingleBlog';
 import UpdateService from './Page/UpdateService';
 import AdminRoute from './PrivateRoute/AdminRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import "@material-tailwind/react/tailwind.css";
 
 function App() {
   return (
