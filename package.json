@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "autoprefixer": "9",
+    "autoprefixer": "^10.4.2",
     "axios": "^0.24.0",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
@@ -17,7 +17,7 @@
     "firebase-tools": "^9.21.0",
     "html-to-draftjs": "^1.5.0",
     "init": "^0.1.2",
-    "postcss": "7",
+    "postcss": "^8.4.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
@@ -32,15 +32,9 @@
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.3",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "tailwindcss": "^3.0.18",
     "tailwindcss-cli": "^0.1.2",
     "web-vitals": "^1.0.1"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.5",
-    "sass": "^1.49.0",
-    "tailwindcss": "^3.0.15"
   },
   "scripts": {
     "start": "craco start",

@@ -77,13 +77,14 @@ const Header = () => {
                                             {/* Profile dropdown */}
                                             <Menu as="div" className="ml-3 relative">
                                                 <div>
-                                                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-500 focus:ring-white">
-                                                        <span className="sr-only">Open user menu</span>
+                                                    <Menu.Button className="hover:bg-gray-300 flex items-center p-1 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-500 focus:ring-white">
+                                                        {/* <span className="sr-only">Open user menu</span> */}
                                                         <img
                                                             className="h-8 w-8 rounded-full"
                                                             src={user.photoURL || '/assets/img/avator.png'}
                                                             alt="profile_pic"
                                                         />
+                                                        <p className="mx-2 text-gray-600 font-semibold">{user.displayName.split(' ')[0]}</p>
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition
