@@ -1,4 +1,5 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut } from 'firebase/auth';
+import { getDownloadURL, getStorage, ref, uploadString } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { initAuth } from '../Firebase/initAuth';
@@ -13,6 +14,8 @@ export const useFirebase = () => {
     const [error, setError] = useState('');
     const [admin, setAdmin] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+
+    const storage = getStorage();
     const auth = getAuth();
 
     // console.log(auth);
@@ -24,6 +27,18 @@ export const useFirebase = () => {
     const redirect = () => {
         const { state } = location;
         (state?.from) ? history.push(state?.from?.pathname) : history.push('/')
+    }
+
+    const uploadAvatar = async (file) => {
+        const fileRef = ref(storage, 'avatar/' + auth?.currentUser?.uid + '.png');
+        setIsLoading(true);
+        const snapshot = await uploadString(fileRef, file, 'data_url');
+        const photoURL = await getDownloadURL(fileRef);
+        updateProfile(auth?.currentUser, { photoURL })
+            .then(() => console.log('avatar uploaded'))
+            .catch(e => console.log(e.message))
+            .finally((result) => setUser({...user, photoURL}))
+        setIsLoading(false);
     }
 
     const signWithGoogle = (e) => {
@@ -149,6 +164,7 @@ export const useFirebase = () => {
         password,
         isLoading,
         setPassword,
+        uploadAvatar,
         signWithGoogle,
         signInWithEmail,
         signUpWithEmail,
