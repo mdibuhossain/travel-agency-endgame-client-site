@@ -20,7 +20,7 @@ const ManageOrder = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.deleteCount > 0) {
                         alert('Successfully deleted :)');
                         const remOrder = order.filter(item => item._id !== id);

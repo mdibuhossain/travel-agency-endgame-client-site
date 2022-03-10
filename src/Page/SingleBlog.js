@@ -13,7 +13,7 @@ const SingleBlog = () => {
                 setCurrentBlog(data[0]);
             })
     }, [id])
-    console.log(currentBlog);
+    // console.log(currentBlog);
     return (
         <div>
             {

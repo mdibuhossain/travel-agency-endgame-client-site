@@ -15,7 +15,7 @@ const Blog = () => {
         fetch('https://travel-pagla.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => {
-                console.log(data.length);
+                // console.log(data.length);
                 setPageCount(Math.ceil(data.length / 6));
                 setBlog(data.slice(pageOffset * 6, (pageOffset + 1) * 6));
                 setDataLoading(false);
@@ -23,7 +23,7 @@ const Blog = () => {
     }, [pageOffset])
 
     const handlePageChange = (event) => {
-        console.log(event);
+        // console.log(event);
         setPageOffset(event.selected);
     };
 

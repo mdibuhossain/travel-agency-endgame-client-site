@@ -21,7 +21,7 @@ const ServiceItem = ({ service, services }) => {
                         alert(`${res.data.message}`);
                     }
                 })
-            console.log(data)
+            // console.log(data)
         }
         else
             history.push('/login');

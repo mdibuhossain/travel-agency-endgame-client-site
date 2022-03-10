@@ -29,6 +29,7 @@ const Header = () => {
     //     else
     //         link.current = false;
     // })
+    console.log(user);
     return (
         <>
             <Disclosure as="nav" className="shadow-lg fixed top-0 z-10 w-screen bg-white">
@@ -84,7 +85,7 @@ const Header = () => {
                                                             src={user.photoURL || '/assets/img/avator.png'}
                                                             alt="profile_pic"
                                                         />
-                                                        <p className="mx-2 text-gray-600 font-semibold">{user.displayName.split(' ')[0]}</p>
+                                                        <p className="mx-2 text-gray-600 font-semibold">{user?.displayName}</p>
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition

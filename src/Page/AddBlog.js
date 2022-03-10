@@ -57,7 +57,7 @@ const AddBlog = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(blog_post)
-        }).then(data => console.log(data))
+        }).then(data => console.log('blogs submited'))
         // console.log(blog_post);
         // const contentBlock = htmlToDraft(currentDescription);
         // const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);

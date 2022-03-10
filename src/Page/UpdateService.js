@@ -10,7 +10,7 @@ const UpdateService = () => {
     const selectedService = service.find(item => item._id === id);
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
         fetch(`https://travel-pagla.herokuapp.com/services/updateservice/${id}`, {
             method: 'PUT',
             headers: {

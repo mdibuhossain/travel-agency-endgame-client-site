@@ -6,7 +6,7 @@ import { useAuth } from '../Hook/useAuth';
 
 const Register = () => {
     const { signUpWithEmail, setName, setEmail, setPassword, error, email, password, name } = useAuth();
-    // console.log(user);
+    // // console.log(user);
 
     return (
         <>
@@ -50,7 +50,7 @@ const Register = () => {
                                     Email address
                                 </label>
                                 <input
-                                    onBlur={(e) => { setEmail(e.target.value) }}
+                                    onChange={(e) => { setEmail(e.target.value) }}
                                     id="email-address"
                                     defaultValue={email}
                                     name="email"
@@ -66,7 +66,7 @@ const Register = () => {
                                     Password
                                 </label>
                                 <input
-                                    onBlur={(e) => { setPassword(e.target.value) }}
+                                    onChange={(e) => { setPassword(e.target.value) }}
                                     id="password"
                                     defaultValue={password}
                                     name="password"

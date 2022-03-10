@@ -18,7 +18,7 @@ const MyOrder = () => {
     }, [updateCount])
     const handleDeleteMyOrder = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
-        console.log(confDelete);
+        // console.log(confDelete);
         if (confDelete) {
             const url = `https://travel-pagla.herokuapp.com/orders/${id}`;
             fetch(url, {
@@ -26,7 +26,7 @@ const MyOrder = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data?.deletedCount > 0) {
                         setUpdateCount(updateCount + 1)
                         alert('Successfully deleted')

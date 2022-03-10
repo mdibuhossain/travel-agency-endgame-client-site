@@ -15,7 +15,7 @@ export const useFirebase = () => {
     const [isLoading, setIsLoading] = useState(true);
     const auth = getAuth();
 
-    console.log(auth);
+    // console.log(auth);
 
     const location = useLocation();
     const history = useHistory();
@@ -110,7 +110,8 @@ export const useFirebase = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(tmpUser)
-        }).then(data => console.log(data))
+        })
+        //.then(data => console.log(data))
     }
 
     useEffect(() => {
@@ -133,7 +134,7 @@ export const useFirebase = () => {
         return () => unsubscribed;
     }, [auth, history, location])
 
-    console.log(admin);
+    // console.log(admin);
 
     return {
         auth,
