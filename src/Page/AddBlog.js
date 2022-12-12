@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { EditorState, convertToRaw, ContentState, convertFromHTML } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import ReactStars from "react-rating-stars-component";
 import { useAuth } from '../Hook/useAuth';
@@ -19,6 +18,7 @@ const AddBlog = () => {
     const [categories, setCategories] = useState([]);
     const [location, setLocation] = useState('');
     const [brief, setBrief] = useState('');
+    const [status, setStatus] = useState('');
     // const [mainEditorContent, setMainEditorContent] = useState('');
     const onEditorStateChange = (e) => {
         setEditorState(e);
@@ -45,19 +45,23 @@ const AddBlog = () => {
         value: newRate,
         onChange: (newValue) => {
             setNewRate(newValue);
-            console.log(`Example 3: new value is ${newValue}`);
+            // console.log(`Example 3: new value is ${newValue}`);
         }
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
         const blog_post = { title, date, image: bannerImage, rating: newRate, cost, summary: brief, description: currentDescription, status: 'pending', email: auth?.currentUser?.email, uid: auth?.currentUser?.uid, displayName: auth?.currentUser?.displayName, location, categories }
-        fetch(`${process.env.API_URL}/blogs`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/blogs`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(blog_post)
-        }).then(data => console.log('blogs submited'))
+        }).then(data => {
+            if (data?.status === 200)
+                setStatus("Submit successfully");
+            else setStatus("Somethings wrong");
+        })
         // console.log(blog_post);
         // const contentBlock = htmlToDraft(currentDescription);
         // const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -97,6 +101,10 @@ const AddBlog = () => {
                     </div>
                     <button type='submit' className="px-5 py-2 mt-5 rounded-md bg-blue-600 text-gray-100 font-semibold hover:bg-blue-700">Submit</button>
                 </form>
+                {
+                    status &&
+                    <div className="bg-yellow-500 text-gray-50 p-3 rounded-lg mt-5">{status}</div>
+                }
             </div>
         </>
     );

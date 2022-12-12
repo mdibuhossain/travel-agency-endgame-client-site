@@ -32,11 +32,11 @@ export const useFirebase = () => {
     const uploadAvatar = async (file) => {
         const fileRef = ref(storage, 'avatar/' + auth?.currentUser?.uid + '.png');
         setIsLoading(true);
-        const snapshot = await uploadString(fileRef, file, 'data_url');
+        await uploadString(fileRef, file, 'data_url');
         const photoURL = await getDownloadURL(fileRef);
         updateProfile(auth?.currentUser, { photoURL })
-            .then(() => console.log('avatar uploaded'))
-            .catch(e => console.log(e.message))
+            .then(() => { })
+            .catch(e => { })
             .finally((result) => setUser({ ...user, photoURL }))
         setIsLoading(false);
     }
@@ -49,7 +49,7 @@ export const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result.user)
-                fetch(`${process.env.API_URL}/users`)
+                fetch(`${process.env.REACT_APP_BACKEND}/users`)
                     .then(res => res.json())
                     .then(data => {
                         const tmpData = data.find(item => item?.email === result?.user?.email)
@@ -119,7 +119,7 @@ export const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const tmpUser = { email, displayName }
-        fetch(`${process.env.API_URL}/users`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/users`, {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -130,7 +130,7 @@ export const useFirebase = () => {
     }
 
     useEffect(() => {
-        fetch(`${process.env.API_URL}/users/admin/${user?.email}`)
+        fetch(`${process.env.REACT_APP_BACKEND}/users/admin/${user?.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data?.admin))
     }, [user])

@@ -5,7 +5,7 @@ const ManageServices = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [updateCount, setUpdateCount] = useState(0);
     React.useEffect(() => {
-        fetch(`${process.env.API_URL}/services`)
+        fetch(`${process.env.REACT_APP_BACKEND}/services`)
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)
@@ -13,7 +13,7 @@ const ManageServices = () => {
             })
     }, [updateCount])
     const handleDeleteService = (id) => {
-        fetch(`${process.env.API_URL}/services/${id}`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/services/${id}`, {
             method: 'DELETE'
         }).then(res => res.json())
             .then(data => {

@@ -6,7 +6,7 @@ const SingleBlog = () => {
     const [currentBlog, setCurrentBlog] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        fetch(`${process.env.API_URL}/blogs/${id}`)
+        fetch(`${process.env.REACT_APP_BACKEND}/blogs/${id}`)
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false);

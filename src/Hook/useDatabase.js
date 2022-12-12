@@ -6,7 +6,7 @@ export const useDatabase = () => {
 
     useEffect(() => {
         setDataLoading(true);
-        fetch(`${process.env.API_URL}/blogs`)
+        fetch(`${process.env.REACT_APP_BACKEND}/blogs`)
             .then(res => res.json())
             .then(data => {
                 setBlog(data);

@@ -7,7 +7,7 @@ const MakeAdmin = () => {
     const [updateCount, setUpdateCount] = useState(0);
     const { user } = useAuth();
     useEffect(() => {
-        fetch(`${process.env.API_URL}/users`)
+        fetch(`${process.env.REACT_APP_BACKEND}/users`)
             .then(res => res.json())
             .then(data => {
                 setFetchedUsers(data)
@@ -15,7 +15,7 @@ const MakeAdmin = () => {
             })
     }, [updateCount])
     const handleMakeAdmin = (id) => {
-        fetch(`${process.env.API_URL}/users/makeadmin/${id}`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/users/makeadmin/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

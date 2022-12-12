@@ -4,7 +4,7 @@ import ServiceItem from './ServiceItem';
 const Service = () => {
     const [service, setService] = useState([]);
     useEffect(() => {
-        fetch(`${process.env.API_URL}/services`)
+        fetch(`${process.env.REACT_APP_BACKEND}/services`)
             .then(res => res.json())
             .then(data => {
                 setService(data)

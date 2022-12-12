@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactStars from "react-rating-stars-component";
-import { MdDateRange } from 'react-icons/md';
-import { MdModeComment } from 'react-icons/md';
-import htmlToDraft from 'html-to-draftjs';
+// import htmlToDraft from 'html-to-draftjs';
 import { NavLink } from 'react-router-dom';
 
 const BlogItem = (props) => {
     const { blog } = props;
-    const description = htmlToDraft(blog.description);
+    // const description = htmlToDraft(blog.description);
     return (
         <div className="flex justify-center">
             <div className="rounded-lg shadow-lg bg-white max-w-sm w-full">

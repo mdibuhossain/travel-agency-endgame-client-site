@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import BlogItem from '../components/BlogItem';
-import PageTitle from '../components/PageTitle';
-import { useDatabase } from '../Hook/useDatabase';
 
 const Blog = () => {
     const [blog, setBlog] = useState([]);
@@ -12,7 +10,7 @@ const Blog = () => {
 
     useEffect(() => {
         setDataLoading(true);
-        fetch(`${process.env.API_URL}/blogs`)
+        fetch(`${process.env.REACT_APP_BACKEND}/blogs`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data.length);

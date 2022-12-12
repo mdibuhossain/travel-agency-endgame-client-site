@@ -15,7 +15,7 @@ const AddNewOrder = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`${process.env.API_URL}/services`, data)
+        axios.post(`${process.env.REACT_APP_BACKEND}/services`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');

@@ -4,7 +4,7 @@ import PageTitle from '../components/PageTitle';
 const ManageOrder = () => {
     const [order, setOrder] = useState([]);
     useEffect(() => {
-        fetch(`${process.env.API_URL}/orders`)
+        fetch(`${process.env.REACT_APP_BACKEND}/orders`)
             .then(res => res.json())
             .then(data => {
                 setOrder(data);
@@ -14,7 +14,7 @@ const ManageOrder = () => {
     const handleDeleteOrder = (id) => {
         const confDelete = window.confirm('Do you really want to delete?');
         if (confDelete) {
-            const url = `${process.env.API_URL}/orders/${id}`;
+            const url = `${process.env.REACT_APP_BACKEND}/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

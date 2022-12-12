@@ -29,7 +29,7 @@ const Header = () => {
     //     else
     //         link.current = false;
     // })
-    console.log(user);
+
     return (
         <>
             <Disclosure as="nav" className="shadow-lg fixed top-0 z-10 w-screen bg-white">
