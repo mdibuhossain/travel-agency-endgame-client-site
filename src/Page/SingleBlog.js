@@ -6,7 +6,7 @@ const SingleBlog = () => {
     const [currentBlog, setCurrentBlog] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        fetch(`https://travel-pagla.herokuapp.com/blogs/${id}`)
+        fetch(`${process.env.API_URL}/blogs/${id}`)
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false);

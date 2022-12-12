@@ -37,7 +37,7 @@ export const useFirebase = () => {
         updateProfile(auth?.currentUser, { photoURL })
             .then(() => console.log('avatar uploaded'))
             .catch(e => console.log(e.message))
-            .finally((result) => setUser({...user, photoURL}))
+            .finally((result) => setUser({ ...user, photoURL }))
         setIsLoading(false);
     }
 
@@ -49,7 +49,7 @@ export const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 setUser(result.user)
-                fetch('https://travel-pagla.herokuapp.com/users')
+                fetch(`${process.env.API_URL}/users`)
                     .then(res => res.json())
                     .then(data => {
                         const tmpData = data.find(item => item?.email === result?.user?.email)
@@ -119,7 +119,7 @@ export const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const tmpUser = { email, displayName }
-        fetch('https://travel-pagla.herokuapp.com/users', {
+        fetch(`${process.env.API_URL}/users`, {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -130,7 +130,7 @@ export const useFirebase = () => {
     }
 
     useEffect(() => {
-        fetch(`https://travel-pagla.herokuapp.com/users/admin/${user?.email}`)
+        fetch(`${process.env.API_URL}/users/admin/${user?.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data?.admin))
     }, [user])

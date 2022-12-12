@@ -5,7 +5,7 @@ const ManageServices = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [updateCount, setUpdateCount] = useState(0);
     React.useEffect(() => {
-        fetch('https://travel-pagla.herokuapp.com/services')
+        fetch(`${process.env.API_URL}/services`)
             .then(res => res.json())
             .then(data => {
                 setIsLoading(false)
@@ -13,7 +13,7 @@ const ManageServices = () => {
             })
     }, [updateCount])
     const handleDeleteService = (id) => {
-        fetch(`https://travel-pagla.herokuapp.com/services/${id}`, {
+        fetch(`${process.env.API_URL}/services/${id}`, {
             method: 'DELETE'
         }).then(res => res.json())
             .then(data => {

@@ -8,7 +8,7 @@ const MyOrder = () => {
     const [updateCount, setUpdateCount] = useState(0);
     const { user } = useAuth();
     useEffect(() => {
-        fetch('https://travel-pagla.herokuapp.com/orders')
+        fetch(`${process.env.API_URL}/orders`)
             .then(res => res.json())
             .then(data => {
                 const tmpData = data.filter(item => user?.email === item?.email);
@@ -20,7 +20,7 @@ const MyOrder = () => {
         const confDelete = window.confirm('Do you really want to delete?');
         // console.log(confDelete);
         if (confDelete) {
-            const url = `https://travel-pagla.herokuapp.com/orders/${id}`;
+            const url = `${process.env.API_URL}/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

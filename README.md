@@ -1,4 +1,4 @@
-# TravelPagla
+# TravelWala
 ## [Live Site](https://travel-pagla.web.app/)
 
 

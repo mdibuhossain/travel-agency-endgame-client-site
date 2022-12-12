@@ -51,7 +51,7 @@ const AddBlog = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const blog_post = { title, date, image: bannerImage, rating: newRate, cost, summary: brief, description: currentDescription, status: 'pending', email: auth?.currentUser?.email, uid: auth?.currentUser?.uid, displayName: auth?.currentUser?.displayName, location, categories }
-        fetch('https://travel-pagla.herokuapp.com/blogs', {
+        fetch(`${process.env.API_URL}/blogs`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

@@ -15,7 +15,7 @@ const AddNewOrder = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://travel-pagla.herokuapp.com/services', data)
+        axios.post(`${process.env.API_URL}/services`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');

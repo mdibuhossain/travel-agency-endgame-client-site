@@ -12,7 +12,7 @@ const ServiceItem = ({ service, services }) => {
             const data = services?.find(item => item._id === id);
             data.name = user?.displayName;
             data.email = user?.email;
-            axios.post('https://travel-pagla.herokuapp.com/orders', data)
+            axios.post(`${process.env.API_URL}/orders`, data)
                 .then(res => {
                     if (res.data.insertedId) {
                         alert('added to cart successfully');

@@ -9,10 +9,10 @@ const Blog = () => {
     const [isDataLoading, setDataLoading] = useState(true);
     const [pageOffset, setPageOffset] = useState(0);
     const [pageCount, setPageCount] = useState(0);
-    // https://travel-pagla.herokuapp.com/
+
     useEffect(() => {
         setDataLoading(true);
-        fetch('https://travel-pagla.herokuapp.com/blogs')
+        fetch(`${process.env.API_URL}/blogs`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data.length);

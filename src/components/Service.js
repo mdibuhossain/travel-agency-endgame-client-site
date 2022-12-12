@@ -4,7 +4,7 @@ import ServiceItem from './ServiceItem';
 const Service = () => {
     const [service, setService] = useState([]);
     useEffect(() => {
-        fetch('https://travel-pagla.herokuapp.com/services')
+        fetch(`${process.env.API_URL}/services`)
             .then(res => res.json())
             .then(data => {
                 setService(data)

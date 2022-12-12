@@ -6,7 +6,7 @@ const BlogRequest = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [updateCount, setUpdateCount] = useState(0);
     useEffect(() => {
-        fetch('https://travel-pagla.herokuapp.com/blogs')
+        fetch(`${process.env.API_URL}/blogs`)
             .then(res => res.json())
             .then(data => {
                 setBlogList(data)
@@ -14,7 +14,7 @@ const BlogRequest = () => {
             })
     }, [updateCount])
     const handleAllowBlog = (id, status) => {
-        fetch(`https://travel-pagla.herokuapp.com/blogs/allow/${id}`, {
+        fetch(`${process.env.API_URL}/blogs/allow/${id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -27,7 +27,7 @@ const BlogRequest = () => {
             })
     }
     const handleDeleteBlog = (id) => {
-        fetch(`https://travel-pagla.herokuapp.com/blogs/delete/${id}`, {
+        fetch(`${process.env.API_URL}/blogs/delete/${id}`, {
             method: "DELETE"
         }).then(res => res.json())
             .then(data => {
